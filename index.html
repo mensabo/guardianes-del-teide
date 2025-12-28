@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardianes del Teide | Compromiso y Acción</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --volcanic-dark: #1a1a1a;
+            --teide-violet: #8e44ad;
+            --forest-green: #27ae60;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+            --text-color: #333;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0; padding: 0;
+            color: var(--text-color);
+            background-color: var(--white);
+            overflow-x: hidden; 
+        }
+
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; margin: 0; }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; padding: 0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Botones */
+        .btn {
+            display: inline-block; padding: 12px 28px; border-radius: 50px;
+            font-weight: 600; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;
+            font-size: 0.85rem; border: none; text-align: center;
+        }
+        .btn-primary { background-color: var(--forest-green); color: white; border: 2px solid var(--forest-green); }
+        .btn-primary:hover { background-color: #219150; transform: scale(1.05); }
+        .btn-outline { background-color: transparent; color: var(--white); border: 2px solid var(--white); }
+        .btn-outline:hover { background-color: var(--white); color: var(--volcanic-dark); transform: scale(1.05); }
+        
+        .btn-outline-dark { background-color: transparent; color: var(--volcanic-dark); border: 2px solid var(--volcanic-dark); }
+        .btn-outline-dark:hover { background-color: var(--volcanic-dark); color: white; transform: scale(1.05); }
+
+        /* BOTÓN ESPECIAL SHIMMER */
+        .btn-highlight {
+            position: relative;
+            overflow: hidden;
+            background: var(--teide-violet);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 20px rgba(142, 68, 173, 0.3);
+            font-size: 0.95rem;
+            padding: 15px 35px;
+        }
+
+        .btn-highlight::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: rotate(30deg);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -60%; }
+            15% { left: 120%; }
+            100% { left: 120%; }
+        }
+
+        .btn-highlight:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(142, 68, 173, 0.5);
+            color: white;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: rgba(26, 26, 26, 0.98);
+            position: fixed; width: 100%; z-index: 1000; padding: 12px 0; top: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo-wrapper { display: flex; align-items: center; gap: 12px; }
+        .logo-volcano-zoom {
+            height: 44px; width: 72px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; background-color: white; border-radius: 4px;
+        }
+        .logo-volcano { 
+            height: 100%; width: 100%; object-fit: cover;
+            transform: scale(1.4); object-position: -3px center; 
+        } 
+        .logo-text { color: white; font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; }
+        
+        nav { display: flex; gap: 15px; align-items: center; }
+        nav a { color: white; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+        nav a:hover { color: var(--forest-green); }
+
+        .menu-toggle { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-fondo.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white; padding-top: 60px;
+        }
+        .hero-main-title { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; }
+        .hero-subtitle {
+            font-size: 1.4rem; font-weight: 800; text-transform: uppercase; 
+            letter-spacing: 2px; color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px; border-bottom: 2px solid var(--forest-green); padding-bottom: 5px;
+            display: inline-block;
+        }
+        .hero-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+
+        /* --- MODAL PDF --- */
+        .pdf-modal {
+            display: none; position: fixed; z-index: 3000; 
+            left: 0; top: 0; width: 100%; height: 100%; 
+            background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center;
+        }
+        .pdf-content { width: 90%; height: 85vh; max-width: 1000px; position: relative; }
+        .close-pdf { position: absolute; top: -45px; right: 0; color: white; font-size: 40px; cursor: pointer; }
+
+        /* --- IMPACTO --- */
+        .impact-counter {
+            background-color: var(--volcanic-dark); color: white; padding: 60px 0;
+            margin-top: -80px; position: relative; z-index: 10; border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
+        .counter-item h3 { font-size: 3rem; color: var(--forest-green); margin-bottom: 10px; }
+
+        /* --- ACCIONES --- */
+        .axes { padding: 100px 0; background: #f9f9f9; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .card { 
+            background: white; border-radius: 15px; overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.3s ease;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
+        .card-img { height: 250px; background-size: cover; background-position: center; }
+        .card-body { padding: 30px; }
+
+        /* --- NOTICIAS --- */
+        .news-section { padding: 100px 0; background-color: white; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .news-card { 
+            background: #fff; border-radius: 12px; overflow: hidden; 
+            border: 1px solid #eee; transition: all 0.3s ease; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            display: flex; flex-direction: column;
+        }
+        .news-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12); 
+            border-color: transparent;
+        }
+        .news-img { height: 200px; background-size: cover; background-position: center; }
+        .news-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .news-meta { font-size: 0.8rem; color: #888; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .news-tag { color: var(--forest-green); font-weight: 700; text-transform: uppercase; }
+        .news-card h3 { font-size: 1.2rem; margin-bottom: 10px; line-height: 1.4; color: var(--volcanic-dark); }
+        .news-card p { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .news-link { margin-top: auto; font-weight: 700; color: var(--volcanic-dark); font-size: 0.85rem; display: inline-block; width: fit-content; border-bottom: 2px solid var(--forest-green); padding-bottom: 2px; }
+
+        /* --- PERSONAJES Y FOTO GRUPAL (TAMAÑO AJUSTADO) --- */
+        .characters-section { padding: 100px 0; text-align: center; background-color: #f9f9f9;}
+        .character-flex { display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; }
+        .character-card { background: white; border-radius: 20px; overflow: hidden; width: 300px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: left; }
+        .character-img-wrapper { height: 350px; overflow: hidden; }
+        .character-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.5s; }
+        .character-card:hover .character-img { transform: scale(1.1); }
+        .character-info { padding: 25px; border-top: 4px solid var(--forest-green); }
+
+        /* Estilos Foto Legends Ajustada */
+        .legends-frame {
+            max-width: 450px; /* Tamaño reducido para mejor estética */
+            margin: 50px auto 30px; 
+            padding: 12px 12px 35px;
+            background: white; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-radius: 4px; 
+            transform: rotate(-1.5deg);
+            transition: 0.5s ease; 
+            position: relative;
+        }
+        .legends-frame:hover { transform: rotate(0deg) scale(1.05); }
+        .legends-photo { width: 100%; display: block; border: 1px solid #f5f5f5; border-radius: 2px; }
+        .legends-caption { 
+            margin-top: 15px; font-family: 'Montserrat'; font-weight: 800;
+            font-size: 1rem; color: #444; letter-spacing: 2px; text-transform: uppercase;
+        }
+
+        /* --- CONCURSO --- */
+        .contest-section { background: var(--volcanic-dark); color: white; padding: 100px 0; }
+        .contest-flex { display: flex; align-items: center; justify-content: center; gap: 60px; margin-bottom: 50px; }
+        .contest-logo-wrapper { flex: 0 0 280px; height: 280px; border: 2px solid white; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .contest-logo-img { width: 100%; transform: scale(2.4); }
+        .contest-gallery-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .strip-item { height: 180px; background-size: cover; background-position: center; border-radius: 10px; }
+
+        /* --- FOOTER --- */
+        footer { background-color: #0a0a0a; color: #777; padding: 60px 0; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav {
+                display: none; position: absolute; top: 100%; left: 0; width: 100%;
+                background-color: #1a1a1a; flex-direction: column; padding: 20px 0;
+            }
+            nav.active { display: flex; }
+            .hero-main-title { font-size: 2.2rem; }
+            .legends-frame { max-width: 85%; transform: rotate(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- VISOR DE PDF -->
+    <div id="pdfModal" class="pdf-modal">
+        <div class="pdf-content">
+            <span class="close-pdf" onclick="closePDF()">&times;</span>
+            <iframe id="pdfFrame" src="" width="100%" height="100%" style="border:none; border-radius: 8px;"></iframe>
+        </div>
+    </div>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo-wrapper">
+                <div class="logo-volcano-zoom">
+                    <img src="images/logo-volcano.png" alt="Volcano Teide" class="logo-volcano">
+                </div>
+                <div class="logo-text">GUARDIANES</div>
+            </div>
+            
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav id="navbar">
+                <a href="#inicio">INICIO</a>
+                <a href="#acciones">ACCIONES</a>
+                <a href="#noticias">NOTICIAS</a>
+                <a href="#concurso">CONCURSO</a>
+                <a href="#manifiesto" class="btn btn-primary">ÚNETE</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-main-title">Cuidar el Teide es<br>cuidar lo que somos.</h1>
+            <h2 class="hero-subtitle">Guardianes del Teide</h2>
+            <div class="hero-buttons">
+                <a href="#acciones" class="btn btn-primary">Conoce el proyecto</a>
+                <a href="javascript:void(0)" class="btn btn-outline" onclick="openPDF('manifiesto.pdf')">Manifiesto</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="impact-counter">
+            <div class="container counter-grid">
+                <div class="counter-item"><h3 id="count-trees">0</h3><p>Árboles Objetivo</p></div>
+                <div class="counter-item"><h3 id="count-co2">0</h3><p>Ton CO2 Evitadas</p></div>
+                <div class="counter-item"><h3 id="count-guardians">0</h3><p>Guardianes Activos</p></div>
+                <div class="counter-item"><h3>100%</h3><p>Energía Solar</p></div>
+            </div>
+        </div>
+    </div>
+
+    <section id="acciones" class="axes">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+                <h2>Acciones con Impacto Real</h2>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('images/accion-arboles.jpeg');"></div>
+                    <div class="card-body"><h3>Raíces del Teide</h3><p>Reforestación masiva del pinar canario.</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('images/accion-flora.jpeg');"></div>
+                    <div class="card-body"><h3>Custodia de Flores</h3><p>Protección de especies endémicas únicas.</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('images/accion-ciencia.jpeg');"></div>
+                    <div class="card-body"><h3>Teide Lab</h3><p>Monitorización científica del ecosistema.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="characters-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Jóvenes Guardianes</h2>
+                <p>Nuestros guías ancestrales en la protección del volcán.</p>
+            </div>
+            
+            <div class="character-flex">
+                <div class="character-card">
+                    <div class="character-img-wrapper">
+                        <div class="character-img" style="background-image: url('images/personaje-guayota.jpeg');"></div>
+                    </div>
+                    <div class="character-info"><h3>Guayota</h3><p>La fuerza volcánica latente de la tierra.</p></div>
+                </div>
+                <div class="character-card">
+                    <div class="character-img-wrapper">
+                        <div class="character-img" style="background-image: url('images/personaje-magec.png'); background-size: 80%; background-repeat: no-repeat; background-position: bottom;"></div>
+                    </div>
+                    <div class="character-info"><h3>Magec</h3><p>El espíritu del sol y la luz protectora.</p></div>
+                </div>
+                <div class="character-card">
+                    <div class="character-img-wrapper">
+                        <div class="character-img" style="background-image: url('images/personaje-achaman.jpeg');"></div>
+                    </div>
+                    <div class="character-info"><h3>Achamán</h3><p>El protector de los cielos y las estrellas.</p></div>
+                </div>
+            </div>
+            
+            <!-- FOTO GRUPAL AJUSTADA -->
+            <div class="legends-frame">
+                <img src="images/legends.jpeg" alt="Leyendas del Teide" class="legends-photo">
+                <div class="legends-caption">Protectores del Teide</div>
+            </div>
+
+            <div style="margin-top: 10px;">
+                <a href="javascript:void(0)" class="btn btn-highlight" onclick="openPDF('manual-teidelovers.pdf')">
+                    <i class="fas fa-bolt" style="margin-right: 8px;"></i> Manual TeideLovers
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="noticias" class="news-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 50px;">Actualidad Guardianes</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-img" style="background-image: url('images/galeria-1.jpeg');"></div>
+                    <div class="news-body">
+                        <h3>Éxito en la reforestación</h3>
+                        <p>Hemos plantado más de 10.000 ejemplares este invierno.</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <div class="news-img" style="background-image: url('images/galeria-4.jpeg');"></div>
+                    <div class="news-body">
+                        <h3>Cielos Limpios</h3>
+                        <p>Inscripciones abiertas para el taller de astrofotografía.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="concurso" class="contest-section">
+        <div class="container">
+            <div class="contest-flex">
+                <div class="contest-logo-wrapper">
+                    <img src="images/logo-fototeide.png" alt="FotoTeide" class="contest-logo-img">
+                </div>
+                <div class="contest-info">
+                    <h2>Tu mirada es importante</h2>
+                    <p>Participa en nuestro concurso y muestra la belleza del Teide.</p>
+                    <a href="#" class="btn btn-primary" style="background:white; color:black;">Participar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div><h4>GUARDIANES</h4><p>Volcano Teide Experience.</p></div>
+            <div><h4>Alianzas</h4><ul><li>Cabildo de Tenerife</li><li>Fundación Foresta</li></ul></div>
+            <div><h4>Legales</h4><ul><li>Privacidad</li><li>Aviso Legal</li></ul></div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById("navbar").classList.toggle("active"); }
+        
+        function openPDF(file) { 
+            const modal = document.getElementById("pdfModal");
+            const frame = document.getElementById("pdfFrame");
+            frame.src = file; 
+            modal.style.display = "flex"; 
+            document.body.style.overflow = "hidden"; 
+        }
+
+        function closePDF() { 
+            const modal = document.getElementById("pdfModal");
+            const frame = document.getElementById("pdfFrame");
+            modal.style.display = "none"; 
+            frame.src = ""; 
+            document.body.style.overflow = "auto"; 
+        }
+
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        let observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    animateValue(document.getElementById("count-trees"), 0, 50000, 2000);
+                    animateValue(document.getElementById("count-co2"), 0, 600, 2000);
+                    animateValue(document.getElementById("count-guardians"), 0, 1540, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        observer.observe(document.querySelector('.impact-counter'));
+    </script>
+</body>
+</html>
