@@ -231,7 +231,26 @@
         /* --- MODALES --- */
         .modal-overlay { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
         .modal-content { width: 90%; height: 85vh; max-width: 1000px; position: relative; overflow-y: auto; }
-        .close-modal { position: absolute; top: -45px; right: 0; color: white; font-size: 40px; cursor: pointer; z-index: 3001; }
+        
+        /* CORRECCIÓN BOTÓN CERRAR MODAL (ASPA) */
+        .close-modal { 
+            position: absolute; 
+            top: 15px; 
+            right: 15px; 
+            color: #333; 
+            font-size: 2rem; 
+            cursor: pointer; 
+            z-index: 3010;
+            background: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
         .reminder-content { background: white; padding: 50px; border-radius: 25px; text-align: center; max-width: 450px; margin: 0 auto; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
         .reminder-content i { font-size: 4rem; color: var(--forest-green); margin-bottom: 25px; }
         .reminder-content input { width: 100%; padding: 18px; margin: 25px 0; border-radius: 50px; border: 1px solid #ddd; box-sizing: border-box; font-size: 1rem; }
@@ -423,7 +442,7 @@
 
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <h1 class="hero-main-title">Cuidar el Teide es<br>cuidar lo que somos</h1>
+            <h1 class="hero-main-title">Cuidar el Teide es<br>cuidar lo que somos.</h1>
             <h2 class="hero-subtitle">Guardianes del Teide</h2>
             <div class="hero-buttons">
                 <a href="#acciones" class="btn btn-primary">Conoce el proyecto</a>
@@ -489,7 +508,7 @@
                 </div>
                 <div class="card-body">
                     <span class="card-tag">Biodiversidad</span>
-                    <h3>Custodia del Parque Nacional del Teide</h3>
+                    <h3>Custodia del Parque Nacional</h3>
                     <p>Cuidar el Parque es una tarea compartida. Acciones de implicación y respeto por un espacio único.</p>
                     <a href="#" class="card-link">Conocer especies</a>
                 </div>
