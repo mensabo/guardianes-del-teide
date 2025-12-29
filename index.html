@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Guardianes del Teide | Compromiso y Acción</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,101 +13,66 @@
             --volcanic-dark: #1a1a1a;
             --teide-violet: #8e44ad;
             --forest-green: #27ae60;
+            --emerald-hero: #2ecc71;
             --white: #ffffff;
             --light-gray: #f4f4f4;
             --text-color: #333;
+            --shadow-standard: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
 
         body {
             font-family: 'Open Sans', sans-serif;
             margin: 0; padding: 0;
             color: var(--text-color);
             background-color: var(--white);
-            overflow-x: hidden; 
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; margin: 0; }
         a { text-decoration: none; transition: 0.3s; }
         ul { list-style: none; padding: 0; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
 
-        /* Botones */
+        /* --- BOTONES --- */
         .btn {
-            display: inline-block; padding: 12px 28px; border-radius: 50px;
-            font-weight: 600; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 15px 32px; border-radius: 50px;
+            font-weight: 700; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;
             font-size: 0.85rem; border: none; text-align: center;
+            box-shadow: var(--shadow-standard);
         }
-        .btn-primary { background-color: var(--forest-green); color: white; border: 2px solid var(--forest-green); }
-        .btn-primary:hover { background-color: #219150; transform: scale(1.05); }
-        .btn-outline { background-color: transparent; color: var(--white); border: 2px solid var(--white); }
-        .btn-outline:hover { background-color: var(--white); color: var(--volcanic-dark); transform: scale(1.05); }
+        .btn-primary { background-color: var(--forest-green); color: white; }
+        .btn-primary:hover { background-color: #219150; transform: scale(1.05); box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3); }
         
-        .btn-outline-dark { background-color: transparent; color: var(--volcanic-dark); border: 2px solid var(--volcanic-dark); }
-        .btn-outline-dark:hover { background-color: var(--volcanic-dark); color: white; transform: scale(1.05); }
+        .btn-orange { background-color: #e67e22; color: white; }
+        .btn-orange:hover { background-color: #d35400; transform: scale(1.05); }
 
-        /* BOTÓN ESPECIAL SHIMMER */
-        .btn-highlight {
-            position: relative;
-            overflow: hidden;
-            background: var(--teide-violet);
-            color: white;
-            border: none;
-            box-shadow: 0 10px 20px rgba(142, 68, 173, 0.3);
-            font-size: 0.95rem;
-            padding: 15px 35px;
-        }
-
-        .btn-highlight::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 20%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.4);
-            transform: rotate(30deg);
-            animation: shimmer 4s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -60%; }
-            15% { left: 120%; }
-            100% { left: 120%; }
-        }
-
-        .btn-highlight:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(142, 68, 173, 0.5);
-            color: white;
-        }
+        .btn-small { padding: 10px 22px; font-size: 0.75rem; }
 
         /* --- HEADER --- */
         header {
             background-color: rgba(26, 26, 26, 0.98);
-            position: fixed; width: 100%; z-index: 1000; padding: 12px 0; top: 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: fixed; width: 100%; z-index: 2000; padding: 12px 0; top: 0; left: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        
+        .nav-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo-wrapper { display: flex; align-items: center; gap: 12px; }
         .logo-volcano-zoom {
             height: 44px; width: 72px;
             display: flex; align-items: center; justify-content: center;
             overflow: hidden; background-color: white; border-radius: 4px;
         }
-        .logo-volcano { 
-            height: 100%; width: 100%; object-fit: cover;
-            transform: scale(1.4); object-position: -3px center; 
-        } 
+        .logo-volcano { height: 100%; width: 100%; object-fit: cover; transform: scale(1.4); object-position: -3px center; } 
         .logo-text { color: white; font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; }
         
-        nav { display: flex; gap: 15px; align-items: center; }
-        nav a { color: white; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+        nav { display: flex; gap: 22px; align-items: center; }
+        nav a { color: white; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         nav a:hover { color: var(--forest-green); }
-
-        .menu-toggle { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        .menu-toggle { display: none; color: white; font-size: 1.6rem; cursor: pointer; transition: 0.3s; padding: 5px; }
 
         /* --- HERO --- */
         .hero {
@@ -118,21 +83,12 @@
         }
         .hero-main-title { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; }
         .hero-subtitle {
-            font-size: 1.4rem; font-weight: 800; text-transform: uppercase; 
+            font-size: 1.2rem; font-weight: 800; text-transform: uppercase; 
             letter-spacing: 2px; color: rgba(255, 255, 255, 0.9);
             margin-bottom: 40px; border-bottom: 2px solid var(--forest-green); padding-bottom: 5px;
             display: inline-block;
         }
-        .hero-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-
-        /* --- MODAL PDF --- */
-        .pdf-modal {
-            display: none; position: fixed; z-index: 3000; 
-            left: 0; top: 0; width: 100%; height: 100%; 
-            background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center;
-        }
-        .pdf-content { width: 90%; height: 85vh; max-width: 1000px; position: relative; }
-        .close-pdf { position: absolute; top: -45px; right: 0; color: white; font-size: 40px; cursor: pointer; }
+        .hero-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 
         /* --- IMPACTO --- */
         .impact-counter {
@@ -143,41 +99,71 @@
         .counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
         .counter-item h3 { font-size: 3rem; color: var(--forest-green); margin-bottom: 10px; }
 
+        /* --- SECCIÓN VÍDEO PRESENTACIÓN --- */
+        .presentation-video-section {
+            width: 100%; height: auto; margin: 80px 0;
+            background: var(--volcanic-dark);
+        }
+        .video-presentation-wrapper { display: flex; flex-direction: column; }
+        .bg-presentation-video { width: 100%; height: 550px; object-fit: cover; display: block; }
+        .video-presentation-overlay { background: var(--volcanic-dark); padding: 80px 0; display: block; width: 100%; }
+        .presentation-content { max-width: 850px; color: white; text-align: left; margin: 0 auto; }
+        .presentation-content h2 { font-size: 2.8rem; margin-bottom: 20px; text-transform: uppercase; line-height: 1.1; }
+        .presentation-content p { font-size: 1.25rem; line-height: 1.7; margin-bottom: 40px; color: rgba(255, 255, 255, 0.85); }
+
+        /* --- REDISEÑO AGENDA GUARDIANA --- */
+        .agenda-section { padding: 100px 0; background-color: #fcfcfc; }
+        .agenda-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
+            margin-top: 50px; 
+        }
+        .agenda-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #f0f0f0;
+        }
+        .agenda-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        
+        .agenda-card-header { padding: 30px; color: white; display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .agenda-card-header::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 40px; background: linear-gradient(to top, rgba(0,0,0,0.1), transparent); }
+        .agenda-card-date { line-height: 1; z-index: 2; }
+        .agenda-card-date .day { font-size: 2.2rem; font-weight: 800; display: block; }
+        .agenda-card-date .month { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .agenda-card-header i { font-size: 2.5rem; opacity: 0.3; z-index: 1; }
+
+        .agenda-card-body { padding: 30px; flex-grow: 1; }
+        .agenda-card-body h3 { font-size: 1.25rem; margin-bottom: 12px; color: var(--volcanic-dark); line-height: 1.3; }
+        .agenda-card-body p { font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 20px; }
+        
+        .agenda-status-pill { display: inline-block; padding: 5px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
+        .status-open { background: #e8f5e9; color: #2e7d32; }
+        .status-full { background: #ffebee; color: #c62828; }
+        .status-soon { background: #e3f2fd; color: #1565c0; }
+
+        .agenda-card-footer { padding: 20px 30px; border-top: 1px solid #f0f0f0; background: #fafafa; display: flex; justify-content: center; }
+        .agenda-card-footer .btn { width: 100%; }
+
         /* --- ACCIONES --- */
-        .axes { padding: 100px 0; background: #f9f9f9; }
+        .section-header { text-align: center; margin-bottom: 60px; }
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .card { 
-            background: white; border-radius: 15px; overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.3s ease;
-        }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
-        .card-img { height: 250px; background-size: cover; background-position: center; }
-        .card-body { padding: 30px; }
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.3s ease; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-10px); }
+        .card-img { position: relative; height: 250px; overflow: hidden; background-color: #000; }
+        .card-img:not(.video-card)::before { content: ""; position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px; background-image: var(--bg-img); background-size: cover; background-position: center; filter: blur(12px) brightness(0.6); z-index: 1; }
+        .card-img:not(.video-card)::after { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: var(--bg-img); background-size: contain; background-repeat: no-repeat; background-position: center; z-index: 2; }
+        .card-body { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-tag { background: var(--light-gray); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; width: fit-content; margin-bottom: 15px; color: var(--forest-green); }
+        .card-link { margin-top: auto; color: var(--forest-green); font-weight: bold; }
 
-        /* --- NOTICIAS --- */
-        .news-section { padding: 100px 0; background-color: white; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .news-card { 
-            background: #fff; border-radius: 12px; overflow: hidden; 
-            border: 1px solid #eee; transition: all 0.3s ease; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-            display: flex; flex-direction: column;
-        }
-        .news-card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12); 
-            border-color: transparent;
-        }
-        .news-img { height: 200px; background-size: cover; background-position: center; }
-        .news-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-        .news-meta { font-size: 0.8rem; color: #888; margin-bottom: 10px; display: flex; justify-content: space-between; }
-        .news-tag { color: var(--forest-green); font-weight: 700; text-transform: uppercase; }
-        .news-card h3 { font-size: 1.2rem; margin-bottom: 10px; line-height: 1.4; color: var(--volcanic-dark); }
-        .news-card p { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 20px; }
-        .news-link { margin-top: auto; font-weight: 700; color: var(--volcanic-dark); font-size: 0.85rem; display: inline-block; width: fit-content; border-bottom: 2px solid var(--forest-green); padding-bottom: 2px; }
-
-        /* --- PERSONAJES Y FOTO GRUPAL (TAMAÑO AJUSTADO) --- */
-        .characters-section { padding: 100px 0; text-align: center; background-color: #f9f9f9;}
+        /* --- PERSONAJES --- */
+        .characters-section { padding: 100px 0; text-align: center; background-color: #f9f9f9; }
         .character-flex { display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; }
         .character-card { background: white; border-radius: 20px; overflow: hidden; width: 300px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: left; }
         .character-img-wrapper { height: 350px; overflow: hidden; }
@@ -185,79 +171,121 @@
         .character-card:hover .character-img { transform: scale(1.1); }
         .character-info { padding: 25px; border-top: 4px solid var(--forest-green); }
 
-        /* Estilos Foto Legends Ajustada */
-        .legends-frame {
-            max-width: 450px; /* Tamaño reducido para mejor estética */
-            margin: 50px auto 30px; 
-            padding: 12px 12px 35px;
-            background: white; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            border-radius: 4px; 
-            transform: rotate(-1.5deg);
-            transition: 0.5s ease; 
-            position: relative;
-        }
-        .legends-frame:hover { transform: rotate(0deg) scale(1.05); }
-        .legends-photo { width: 100%; display: block; border: 1px solid #f5f5f5; border-radius: 2px; }
-        .legends-caption { 
-            margin-top: 15px; font-family: 'Montserrat'; font-weight: 800;
-            font-size: 1rem; color: #444; letter-spacing: 2px; text-transform: uppercase;
-        }
+        .guardian-tribute { margin-top: 60px; text-align: center; padding: 20px; }
+        .all-characters-img { max-width: 500px; width: auto; height: auto; max-height: 60vh; display: inline-block; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); animation: heroic-float 6s ease-in-out infinite; }
+        .teidelovers-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px; }
 
         /* --- CONCURSO --- */
         .contest-section { background: var(--volcanic-dark); color: white; padding: 100px 0; }
         .contest-flex { display: flex; align-items: center; justify-content: center; gap: 60px; margin-bottom: 50px; }
-        .contest-logo-wrapper { flex: 0 0 280px; height: 280px; border: 2px solid white; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .contest-logo-img { width: 100%; transform: scale(2.4); }
-        .contest-gallery-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-        .strip-item { height: 180px; background-size: cover; background-position: center; border-radius: 10px; }
+        .contest-logo-wrapper { flex: 0 0 260px; width: 260px; height: 260px; border: 2px solid white; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: black; }
+        .contest-logo-img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.9); }
+        .contest-gallery-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 40px; }
+        .strip-item { height: 200px; background-size: cover; background-position: center; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); }
 
-        /* --- FOOTER --- */
-        footer { background-color: #0a0a0a; color: #777; padding: 60px 0; font-size: 0.9rem; }
+        /* --- ALIANZAS --- */
+        .partners-section { padding: 80px 0; background-color: #fff; text-align: center; border-top: 1px solid #eee; }
+        .partners-grid { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; margin-top: 40px; }
+        .partner-item { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #999; font-size: 1.2rem; filter: grayscale(1); opacity: 0.7; transition: 0.3s; }
+        .partner-item:hover { filter: grayscale(0); opacity: 1; color: var(--volcanic-dark); }
+
+        /* --- FOOTER Y LOGO CREADOR --- */
+        footer { background-color: #0a0a0a; color: #777; padding: 80px 0 40px; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; }
+        .footer-grid h4 { color: white; margin-bottom: 25px; font-size: 1.1rem; text-transform: uppercase; }
+        .footer-grid ul li { margin-bottom: 12px; }
+        .footer-grid ul li a { color: #777; font-size: 0.9rem; }
+        .footer-grid ul li a:hover { color: var(--forest-green); }
 
-        /* --- RESPONSIVE --- */
+        .creator-credit { margin-top: 40px; border-top: 1px solid #222; padding-top: 25px; display: flex; flex-direction: column; align-items: flex-start; }
+        .creator-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #444; margin-bottom: 10px; }
+        .creator-logo { height: 38px; width: auto; opacity: 0.6; transition: 0.3s; filter: grayscale(1) brightness(1.5); }
+        .creator-logo:hover { opacity: 1; filter: grayscale(0) brightness(1); transform: translateY(-3px); }
+
+        /* --- MODALES --- */
+        .modal-overlay { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+        .modal-content { width: 90%; height: 85vh; max-width: 1000px; position: relative; }
+        .close-modal { position: absolute; top: -45px; right: 0; color: white; font-size: 40px; cursor: pointer; z-index: 3001; }
+        .reminder-content { background: white; padding: 50px; border-radius: 25px; text-align: center; max-width: 450px; margin: 0 auto; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .reminder-content i { font-size: 4rem; color: var(--forest-green); margin-bottom: 25px; }
+        .reminder-content input { width: 100%; padding: 18px; margin: 25px 0; border-radius: 50px; border: 1px solid #ddd; box-sizing: border-box; font-size: 1rem; }
+
+        /* --- RESPONSIVE Y REDISEÑO MENÚ MÓVIL --- */
+        @media (max-width: 992px) {
+            .counter-grid { grid-template-columns: repeat(2, 1fr); }
+            .bg-presentation-video { height: 400px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .creator-credit { align-items: center; }
+        }
+
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
+            
+            /* --- MENU MOVIL PREMIUM --- */
             nav {
-                display: none; position: absolute; top: 100%; left: 0; width: 100%;
-                background-color: #1a1a1a; flex-direction: column; padding: 20px 0;
+                display: none; 
+                position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+                background: linear-gradient(135deg, rgba(15, 15, 15, 0.98) 0%, rgba(30, 30, 30, 0.95) 100%);
+                backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+                flex-direction: column; justify-content: center; align-items: center;
+                gap: 25px; z-index: 1999;
+                padding-top: 50px;
             }
-            nav.active { display: flex; }
+            nav.active { display: flex; animation: fadeIn 0.4s ease forwards; }
+            
+            nav a {
+                font-size: 1.1rem; letter-spacing: 3px; font-weight: 700;
+                color: rgba(255, 255, 255, 0.7); border-bottom: 2px solid transparent;
+                padding: 10px 0; transform: translateY(20px); opacity: 0;
+            }
+            nav.active a { animation: slideInUp 0.5s ease forwards; }
+            nav.active a:nth-child(1) { animation-delay: 0.1s; }
+            nav.active a:nth-child(2) { animation-delay: 0.2s; }
+            nav.active a:nth-child(3) { animation-delay: 0.3s; }
+            nav.active a:nth-child(4) { animation-delay: 0.4s; }
+            nav.active a:nth-child(5) { animation-delay: 0.5s; }
+            nav.active a:nth-child(6) { animation-delay: 0.6s; }
+
+            nav a:hover, nav a.active-link { color: var(--emerald-hero); border-bottom-color: var(--emerald-hero); }
+            
+            .btn-small { transform: none !important; opacity: 1 !important; animation: none !important; margin-top: 20px; font-size: 1rem; padding: 15px 40px; }
+            
+            /* Ajuste Hero */
             .hero-main-title { font-size: 2.2rem; }
-            .legends-frame { max-width: 85%; transform: rotate(0); }
+            .presentation-content h2 { font-size: 1.8rem; }
         }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes heroic-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
     </style>
 </head>
 <body>
 
-    <!-- VISOR DE PDF -->
-    <div id="pdfModal" class="pdf-modal">
-        <div class="pdf-content">
-            <span class="close-pdf" onclick="closePDF()">&times;</span>
-            <iframe id="pdfFrame" src="" width="100%" height="100%" style="border:none; border-radius: 8px;"></iframe>
+    <!-- MODAL ÚNICO -->
+    <div id="mainModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalInjection" style="height: 100%;">
+                <iframe id="modalFrame" src="" width="100%" height="100%" style="border:none; border-radius: 8px;"></iframe>
+            </div>
         </div>
     </div>
 
     <header>
         <div class="container nav-container">
             <div class="logo-wrapper">
-                <div class="logo-volcano-zoom">
-                    <img src="images/logo-volcano.png" alt="Volcano Teide" class="logo-volcano">
-                </div>
+                <div class="logo-volcano-zoom"><img src="images/logo-volcano.png" alt="Volcano Teide" class="logo-volcano"></div>
                 <div class="logo-text">GUARDIANES</div>
             </div>
-            
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-
+            <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             <nav id="navbar">
-                <a href="#inicio">INICIO</a>
-                <a href="#acciones">ACCIONES</a>
-                <a href="#noticias">NOTICIAS</a>
-                <a href="#concurso">CONCURSO</a>
-                <a href="#manifiesto" class="btn btn-primary">ÚNETE</a>
+                <a href="#inicio" onclick="toggleMenu()">INICIO</a>
+                <a href="#acciones" onclick="toggleMenu()">ACCIONES</a>
+                <a href="#agenda" onclick="toggleMenu()">AGENDA GUARDIANA</a>
+                <a href="#noticias" onclick="toggleMenu()">NOTICIAS</a>
+                <a href="#concurso" onclick="toggleMenu()">CONCURSO</a>
+                <a href="#manifiesto" class="btn btn-primary btn-small" onclick="toggleMenu()">ÚNETE</a>
             </nav>
         </div>
     </header>
@@ -268,7 +296,9 @@
             <h2 class="hero-subtitle">Guardianes del Teide</h2>
             <div class="hero-buttons">
                 <a href="#acciones" class="btn btn-primary">Conoce el proyecto</a>
-                <a href="javascript:void(0)" class="btn btn-outline" onclick="openPDF('manifiesto.pdf')">Manifiesto</a>
+                <a href="javascript:void(0)" class="btn btn-primary" onclick="openPdfModal('manifiesto.pdf')">
+                    <i class="fas fa-file-pdf"></i> Manifiesto PDF
+                </a>
             </div>
         </div>
     </section>
@@ -284,23 +314,126 @@
         </div>
     </div>
 
-    <section id="acciones" class="axes">
-        <div class="container">
-            <div class="section-header" style="text-align: center; margin-bottom: 50px;">
-                <h2>Acciones con Impacto Real</h2>
+    <!-- SECCIÓN VÍDEO PRESENTACIÓN -->
+    <section class="presentation-video-section">
+        <div class="video-presentation-wrapper">
+            <video id="main-presentation-video" autoplay muted loop playsinline webkit-playsinline preload="auto" class="bg-presentation-video">
+                <source src="videos/presentacion-guardianes.mp4" type="video/mp4">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-beautiful-aerial-view-of-the-teide-volcano-in-spain-32631-large.mp4" type="video/mp4">
+            </video>
+            <div class="video-presentation-overlay">
+                <div class="container">
+                    <div class="presentation-content">
+                        <h2>El Alma de la Organización</h2>
+                        <p>No somos solo un proyecto, somos la voluntad de una isla decidida a proteger su mayor tesoro. Conoce nuestra historia, nuestra metodología y nuestro compromiso innegociable con el Teide.</p>
+                        <a href="#manifiesto" class="btn btn-primary">Únete a la Misión</a>
+                    </div>
+                </div>
             </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-img" style="background-image: url('images/accion-arboles.jpeg');"></div>
-                    <div class="card-body"><h3>Raíces del Teide</h3><p>Reforestación masiva del pinar canario.</p></div>
+        </div>
+    </section>
+
+    <section id="acciones" class="container" style="padding: 100px 0;">
+        <div class="section-header">
+            <h2>Acciones con Impacto Real</h2>
+            <p>Proyectos destinados a la conservación y cuidado de nuestro paisaje.</p>
+        </div>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-img" style="--bg-img: url('images/accion-arboles.jpeg');"></div>
+                <div class="card-body">
+                    <span class="card-tag">Conservación</span>
+                    <h3>Raíces del Teide</h3>
+                    <p>Un compromiso a largo plazo con el territorio. 50.000 árboles en 5 años para restaurar zonas degradadas.</p>
+                    <a href="#" class="card-link">Ver progreso</a>
                 </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('images/accion-flora.jpeg');"></div>
-                    <div class="card-body"><h3>Custodia de Flores</h3><p>Protección de especies endémicas únicas.</p></div>
+            </div>
+
+            <div class="card">
+                <div class="card-img video-card" style="background: #000;">
+                    <video autoplay muted loop playsinline webkit-playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+                        <source src="videos/custodia-teide.mp4" type="video/mp4">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-clouds-and-blue-sky-over-a-mountain-range-32630-large.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('images/accion-ciencia.jpeg');"></div>
-                    <div class="card-body"><h3>Teide Lab</h3><p>Monitorización científica del ecosistema.</p></div>
+                <div class="card-body">
+                    <span class="card-tag">Biodiversidad</span>
+                    <h3>Custodia del Parque Nacional</h3>
+                    <p>Cuidar el Parque es una tarea compartida. Acciones de implicación y respeto por un espacio único.</p>
+                    <a href="#" class="card-link">Conocer especies</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img" style="--bg-img: url('images/accion-ciencia.jpeg');"></div>
+                <div class="card-body">
+                    <span class="card-tag">Ciencia</span>
+                    <h3>Me Quiere, No me Quiere</h3>
+                    <p>La biodiversidad nos da pistas. Una invitación a comprender el equilibrio natural del Teide.</p>
+                    <a href="#" class="card-link">Descubrir datos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN AGENDA GUARDIANA -->
+    <section id="agenda" class="agenda-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Agenda Guardiana 2026</h2>
+                <p>Experiencias inmersivas para la conservación del ecosistema.</p>
+            </div>
+            
+            <div class="agenda-grid">
+                <div class="agenda-card">
+                    <div class="agenda-card-header" style="background: var(--forest-green);">
+                        <div class="agenda-card-date"><span class="day">15</span><span class="month">Marzo</span></div>
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="agenda-card-body">
+                        <span class="agenda-status-pill status-open">Plazas Disponibles</span>
+                        <h3>Siembra Colectiva: El Gran Pinar</h3>
+                        <p>Acompaña a nuestros expertos en una jornada de restauración forestal intensiva en las zonas altas.</p>
+                    </div>
+                    <div class="agenda-card-footer">
+                        <button class="btn btn-primary btn-small" onclick="openReminderModal('Siembra Colectiva')">
+                            <i class="fas fa-bell"></i> Avisarme
+                        </button>
+                    </div>
+                </div>
+
+                <div class="agenda-card">
+                    <div class="agenda-card-header" style="background: var(--teide-violet);">
+                        <div class="agenda-card-date"><span class="day">22</span><span class="month">Junio</span></div>
+                        <i class="fas fa-star-and-crescent"></i>
+                    </div>
+                    <div class="agenda-card-body">
+                        <span class="agenda-status-pill status-full">Evento Completo</span>
+                        <h3>Noche de Estrellas y Mitología</h3>
+                        <p>Observación guiada bajo uno de los cielos más limpios del planeta, uniendo ciencia y leyendas aborígenes.</p>
+                    </div>
+                    <div class="agenda-card-footer">
+                        <button class="btn btn-primary btn-small" style="opacity: 0.6;" onclick="openReminderModal('Noche de Estrellas')">
+                            <i class="fas fa-bell"></i> Lista de Espera
+                        </button>
+                    </div>
+                </div>
+
+                <div class="agenda-card">
+                    <div class="agenda-card-header" style="background: var(--volcanic-dark);">
+                        <div class="agenda-card-date"><span class="day">10</span><span class="month">Octubre</span></div>
+                        <i class="fas fa-mountain-sun"></i>
+                    </div>
+                    <div class="agenda-card-body">
+                        <span class="agenda-status-pill status-soon">Próximamente</span>
+                        <h3>Limpieza de Senderos Históricos</h3>
+                        <p>Participa en la restauración y limpieza de los trazados tradicionales para un uso público sostenible.</p>
+                    </div>
+                    <div class="agenda-card-footer">
+                        <button class="btn btn-primary btn-small" onclick="openReminderModal('Limpieza de Senderos')">
+                            <i class="fas fa-bell"></i> Notificar Apertura
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -310,62 +443,52 @@
         <div class="container">
             <div class="section-header">
                 <h2>Jóvenes Guardianes</h2>
-                <p>Nuestros guías ancestrales en la protección del volcán.</p>
+                <p>Los elementos ancestrales que protegen la isla de Tenerife.</p>
             </div>
-            
             <div class="character-flex">
                 <div class="character-card">
-                    <div class="character-img-wrapper">
-                        <div class="character-img" style="background-image: url('images/personaje-guayota.jpeg');"></div>
-                    </div>
-                    <div class="character-info"><h3>Guayota</h3><p>La fuerza volcánica latente de la tierra.</p></div>
+                    <div class="character-img-wrapper"><div class="character-img" style="background-image: url('images/personaje-guayota.jpeg');"></div></div>
+                    <div class="character-info"><h3>Guayota</h3><p>Poder volcánico y fuerza interior. La energía latente de la tierra.</p></div>
                 </div>
                 <div class="character-card">
-                    <div class="character-img-wrapper">
-                        <div class="character-img" style="background-image: url('images/personaje-magec.png'); background-size: 80%; background-repeat: no-repeat; background-position: bottom;"></div>
-                    </div>
-                    <div class="character-info"><h3>Magec</h3><p>El espíritu del sol y la luz protectora.</p></div>
+                    <div class="character-img-wrapper"><div class="character-img" style="background-image: url('images/personaje-magec.png'); background-size: contain; background-repeat: no-repeat; background-position: bottom;"></div></div>
+                    <div class="character-info"><h3>Magec</h3><p>Espíritu del Sol. Energía vital para el crecimiento de la vida.</p></div>
                 </div>
                 <div class="character-card">
-                    <div class="character-img-wrapper">
-                        <div class="character-img" style="background-image: url('images/personaje-achaman.jpeg');"></div>
-                    </div>
-                    <div class="character-info"><h3>Achamán</h3><p>El protector de los cielos y las estrellas.</p></div>
+                    <div class="character-img-wrapper"><div class="character-img" style="background-image: url('images/personaje-achaman.jpeg');"></div></div>
+                    <div class="character-info"><h3>Achamán</h3><p>Protector de los cielos y de la claridad de nuestras estrellas.</p></div>
                 </div>
             </div>
-            
-            <!-- FOTO GRUPAL AJUSTADA -->
-            <div class="legends-frame">
-                <img src="images/legends.jpeg" alt="Leyendas del Teide" class="legends-photo">
-                <div class="legends-caption">Protectores del Teide</div>
-            </div>
-
-            <div style="margin-top: 10px;">
-                <a href="javascript:void(0)" class="btn btn-highlight" onclick="openPDF('manual-teidelovers.pdf')">
-                    <i class="fas fa-bolt" style="margin-right: 8px;"></i> Manual TeideLovers
-                </a>
+            <div class="guardian-tribute">
+                <img src="images/legends.jpeg" alt="Guardianes" class="all-characters-img"><br>
+                <div class="teidelovers-actions">
+                    <button class="btn btn-primary" onclick="openPdfModal('manual-teidelovers.pdf')">
+                        <i class="fas fa-book-open"></i> MANUAL TEIDELOVERS
+                    </button>
+                    <button class="btn btn-orange" onclick="openHeroModal()">
+                        <i class="fas fa-mask"></i> LIGA DE GUARDIANES
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="noticias" class="news-section">
+    <section id="noticias" style="padding: 100px 0;">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 50px;">Actualidad Guardianes</h2>
-            <div class="news-grid">
-                <article class="news-card">
-                    <div class="news-img" style="background-image: url('images/galeria-1.jpeg');"></div>
-                    <div class="news-body">
-                        <h3>Éxito en la reforestación</h3>
-                        <p>Hemos plantado más de 10.000 ejemplares este invierno.</p>
-                    </div>
-                </article>
-                <article class="news-card">
-                    <div class="news-img" style="background-image: url('images/galeria-4.jpeg');"></div>
-                    <div class="news-body">
-                        <h3>Cielos Limpios</h3>
-                        <p>Inscripciones abiertas para el taller de astrofotografía.</p>
-                    </div>
-                </article>
+            <div class="section-header"><h2>Actualidad Guardianes</h2></div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-img" style="--bg-img: url('images/galeria-1.jpeg');"></div>
+                    <div class="card-body"><h3>Reforestación Invernal</h3><p>Superamos los 10.000 ejemplares plantados gracias al apoyo voluntario.</p><a href="#" class="card-link">Ver el reto</a></div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="--bg-img: url('images/noche.jpeg');"></div>
+                    <div class="card-body"><h3>Fauna Nocturna</h3><p>Teide Lab detecta un incremento en la actividad de especies protegidas.</p><a href="#" class="card-link">Descubrir programa</a></div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="--bg-img: url('images/galeria-4.jpeg');"></div>
+                    <div class="card-body"><h3>Taller Astrofotografía</h3><p>Aprende a capturar la Vía Láctea desde el Parque Nacional.</p><a href="#" class="card-link">Descubrir más</a></div>
+                </div>
             </div>
         </div>
     </section>
@@ -373,43 +496,148 @@
     <section id="concurso" class="contest-section">
         <div class="container">
             <div class="contest-flex">
-                <div class="contest-logo-wrapper">
-                    <img src="images/logo-fototeide.png" alt="FotoTeide" class="contest-logo-img">
-                </div>
+                <div class="contest-logo-wrapper"><img src="images/logo-fototeide.png" alt="FotoTeide" class="contest-logo-img"></div>
                 <div class="contest-info">
                     <h2>Tu mirada es importante</h2>
-                    <p>Participa en nuestro concurso y muestra la belleza del Teide.</p>
-                    <a href="#" class="btn btn-primary" style="background:white; color:black;">Participar</a>
+                    <p>Captura la esencia del Teide en cualquier estación y participa en nuestro concurso trimestral.</p>
+                    <a href="#" class="btn btn-primary" style="background:white; color:black;">Bases del Concurso</a>
                 </div>
             </div>
+            <div class="contest-gallery-strip">
+                <div class="strip-item" style="background-image: url('images/galeria-1.jpeg')"></div>
+                <div class="strip-item" style="background-image: url('images/galeria-2.jpeg')"></div>
+                <div class="strip-item" style="background-image: url('images/galeria-3.jpeg')"></div>
+                <div class="strip-item" style="background-image: url('images/galeria-4.jpeg')"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners-section">
+        <div class="container">
+            <h2 style="font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px;">Alianzas Estratégicas</h2>
+            <div class="partners-grid">
+                <div class="partner-item">Cabildo de Tenerife</div>
+                <div class="partner-item">Fundación Foresta</div>
+                <div class="partner-item">Universidad de La Laguna</div>
+                <div class="partner-item">Volcano Teide</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="manifiesto" style="padding: 100px 0; text-align: center; background: #f9f9f9;">
+        <div class="container">
+            <h2>Firma el Manifiesto</h2>
+            <p>Únete a los miles de personas que ya se han comprometido con el futuro del Teide.</p>
+            <form style="margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                <input type="email" placeholder="Tu correo electrónico" style="padding: 15px 25px; border-radius: 50px; border: 1px solid #ccc; width: 300px;">
+                <button type="submit" class="btn btn-primary">Firmar</button>
+            </form>
         </div>
     </section>
 
     <footer>
         <div class="container footer-grid">
-            <div><h4>GUARDIANES</h4><p>Volcano Teide Experience.</p></div>
-            <div><h4>Alianzas</h4><ul><li>Cabildo de Tenerife</li><li>Fundación Foresta</li></ul></div>
-            <div><h4>Legales</h4><ul><li>Privacidad</li><li>Aviso Legal</li></ul></div>
+            <div class="footer-col">
+                <h4>GUARDIANES DEL TEIDE</h4>
+                <p>Sostenibilidad y protección integral del Parque Nacional. Una iniciativa para proteger nuestro legado volcánico.</p>
+                <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 Volcano Teide Experience.</p>
+                <div class="creator-credit">
+                    <span class="creator-tag">Diseñado por</span>
+                    <a href="#"><img src="images/chacho-creations-logo-fondo-oscuro.png" alt="Chacho Creations" class="creator-logo"></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Alianzas</h4>
+                <ul>
+                    <li><a href="#">Cabildo de Tenerife</a></li>
+                    <li><a href="#">Fundación Foresta</a></li>
+                    <li><a href="#">Universidad de La Laguna</a></li>
+                    <li><a href="#">Teleférico del Teide</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces y Legal</h4>
+                <ul>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Aviso Legal</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Política de Cookies</a></li>
+                </ul>
+            </div>
         </div>
     </footer>
 
     <script>
-        function toggleMenu() { document.getElementById("navbar").classList.toggle("active"); }
+        function toggleMenu() { 
+            const nav = document.getElementById("navbar");
+            const icon = document.querySelector("#menuToggle i");
+            nav.classList.toggle("active"); 
+            
+            // Cambiar icono de hamburguesa a X
+            if(nav.classList.contains("active")) {
+                icon.classList.replace("fa-bars", "fa-times");
+                document.body.style.overflow = "hidden"; // Bloquear scroll al abrir menu
+            } else {
+                icon.classList.replace("fa-times", "fa-bars");
+                document.body.style.overflow = "auto";
+            }
+        }
         
-        function openPDF(file) { 
-            const modal = document.getElementById("pdfModal");
-            const frame = document.getElementById("pdfFrame");
-            frame.src = file; 
+        function closeModal() { 
+            document.getElementById("mainModal").style.display = "none"; 
+            document.getElementById("modalInjection").innerHTML = '<iframe id="modalFrame" src="" width="100%" height="100%" style="border:none; border-radius: 8px; display:none;"></iframe>';
+            document.body.style.overflow = "auto"; 
+        }
+
+        function openPdfModal(file) { 
+            const modal = document.getElementById("mainModal");
+            const frame = document.getElementById("modalFrame");
+            frame.style.display = "block";
+            frame.src = file;
             modal.style.display = "flex"; 
             document.body.style.overflow = "hidden"; 
         }
 
-        function closePDF() { 
-            const modal = document.getElementById("pdfModal");
-            const frame = document.getElementById("pdfFrame");
-            modal.style.display = "none"; 
-            frame.src = ""; 
-            document.body.style.overflow = "auto"; 
+        function openReminderModal(eventName) {
+            const modal = document.getElementById("mainModal");
+            const injection = document.getElementById("modalInjection");
+            injection.innerHTML = `
+                <div class="reminder-content">
+                    <i class="fas fa-bell"></i>
+                    <h3>Recordatorio Guardián</h3>
+                    <p>Fijaremos un aviso para el evento:<br><strong>${eventName}</strong></p>
+                    <input type="email" id="remEmail" placeholder="Tu correo electrónico">
+                    <button class="btn btn-primary" onclick="confirmReminder()">Activar Alerta</button>
+                </div>
+            `;
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function confirmReminder() {
+            const email = document.getElementById('remEmail').value;
+            if(email) {
+                alert('¡Perfecto! Te enviaremos un recordatorio a ' + email + ' antes de la actividad.');
+                closeModal();
+            } else { alert('Por favor, introduce un correo válido.'); }
+        }
+
+        function openHeroModal() {
+            const modal = document.getElementById("mainModal");
+            const injection = document.getElementById("modalInjection");
+            injection.innerHTML = `
+                <div class="hero-stats-container" style="color:white; text-align:center; padding:30px;">
+                    <h2 style="color:var(--emerald-hero); margin-bottom:10px;">LIGA DE SUPER-GUARDIANES</h2>
+                    <p>Tu compromiso activa las habilidades de los ancestros.</p>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:20px; margin-top:30px;">
+                        <div><i class="fas fa-fire" style="color:orange; font-size:2rem;"></i><h3>GUAYOTA</h3><small>Reforestación: 85%</small></div>
+                        <div><i class="fas fa-sun" style="color:gold; font-size:2rem;"></i><h3>MAGEC</h3><small>Carbono Cero: 100%</small></div>
+                        <div><i class="fas fa-eye" style="color:skyblue; font-size:2rem;"></i><h3>ACHAMÁN</h3><small>Cielos Limpios: 70%</small></div>
+                    </div>
+                </div>
+            `;
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
         }
 
         function animateValue(obj, start, end, duration) {
@@ -434,6 +662,11 @@
             });
         }, { threshold: 0.5 });
         observer.observe(document.querySelector('.impact-counter'));
+
+        window.addEventListener('load', function() {
+            const v = document.getElementById('main-presentation-video');
+            if(v) v.play().catch(e => console.log("Autoplay pendiente."));
+        });
     </script>
 </body>
 </html>
