@@ -18,6 +18,11 @@
             --light-gray: #f4f4f4;
             --text-color: #333;
             --shadow-standard: 0 4px 15px rgba(0, 0, 0, 0.15);
+            
+            /* Colores Personajes */
+            --guayota-red: #e74c3c;
+            --magec-gold: #f1c40f;
+            --achaman-blue: #3498db;
         }
 
         html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
@@ -52,6 +57,16 @@
         .btn-orange:hover { background-color: #d35400; transform: scale(1.05); }
 
         .btn-small { padding: 10px 22px; font-size: 0.75rem; }
+        
+        /* Boton cerrar menú movil específico (dentro del nav) */
+        .btn-close-menu {
+            display: none; /* Oculto en escritorio */
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.2);
+            color: white;
+            margin-top: 30px;
+        }
+        .btn-close-menu:hover { background: rgba(255,255,255,0.1); }
 
         /* --- HEADER --- */
         header {
@@ -72,7 +87,18 @@
         nav { display: flex; gap: 22px; align-items: center; }
         nav a { color: white; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         nav a:hover { color: var(--forest-green); }
-        .menu-toggle { display: none; color: white; font-size: 1.6rem; cursor: pointer; transition: 0.3s; padding: 5px; }
+        
+        /* CORRECCIÓN MENU TOGGLE: z-index alto para estar sobre el overlay */
+        .menu-toggle { 
+            display: none; 
+            color: white; 
+            font-size: 1.6rem; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            padding: 5px; 
+            position: relative;
+            z-index: 2001; /* Asegura que esté por encima del menú desplegado */
+        }
 
         /* --- HERO --- */
         .hero {
@@ -204,11 +230,101 @@
 
         /* --- MODALES --- */
         .modal-overlay { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
-        .modal-content { width: 90%; height: 85vh; max-width: 1000px; position: relative; }
+        .modal-content { width: 90%; height: 85vh; max-width: 1000px; position: relative; overflow-y: auto; }
         .close-modal { position: absolute; top: -45px; right: 0; color: white; font-size: 40px; cursor: pointer; z-index: 3001; }
         .reminder-content { background: white; padding: 50px; border-radius: 25px; text-align: center; max-width: 450px; margin: 0 auto; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
         .reminder-content i { font-size: 4rem; color: var(--forest-green); margin-bottom: 25px; }
         .reminder-content input { width: 100%; padding: 18px; margin: 25px 0; border-radius: 50px; border: 1px solid #ddd; box-sizing: border-box; font-size: 1rem; }
+
+        /* --- ESTILOS ESPECIFICOS DE LA LIGA GUARDIANA (GAMIFICACION) --- */
+        .hero-gamified-container {
+            background-color: #121212;
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero-selection-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .hero-option-card {
+            background: #222;
+            border: 2px solid #333;
+            border-radius: 15px;
+            padding: 20px;
+            width: 250px;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-option-card:hover { transform: translateY(-10px); border-color: var(--white); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+        
+        .hero-icon-large { font-size: 3.5rem; margin-bottom: 15px; display: block; }
+        
+        /* Colores específicos de tarjetas */
+        .card-guayota:hover { border-color: var(--guayota-red); }
+        .card-guayota:hover .hero-icon-large { color: var(--guayota-red); text-shadow: 0 0 15px var(--guayota-red); }
+        
+        .card-magec:hover { border-color: var(--magec-gold); }
+        .card-magec:hover .hero-icon-large { color: var(--magec-gold); text-shadow: 0 0 15px var(--magec-gold); }
+        
+        .card-achaman:hover { border-color: var(--achaman-blue); }
+        .card-achaman:hover .hero-icon-large { color: var(--achaman-blue); text-shadow: 0 0 15px var(--achaman-blue); }
+
+        .hero-bio { font-size: 0.85rem; color: #aaa; margin-top: 10px; line-height: 1.5; text-align: left; }
+        .hero-power { font-weight: bold; margin-top: 10px; display: block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;}
+        
+        /* Input gamificado */
+        .gamified-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #444;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 300px;
+            margin: 10px 0;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .gamified-input:focus {
+            border-color: var(--emerald-hero);
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .gamified-input::placeholder { color: #aaa; }
+        
+        /* ESTILOS DEL CARNET VIRTUAL (RESULTADO) */
+        .virtual-card-wrapper {
+            background: linear-gradient(135deg, #eee 0%, #fff 100%);
+            color: #333;
+            max-width: 400px;
+            margin: 30px auto;
+            border-radius: 15px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+            text-align: left;
+            animation: flipIn 0.8s ease;
+        }
+        .vc-header { padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center; }
+        .vc-body { padding: 25px; }
+        .vc-avatar { float: right; font-size: 4rem; opacity: 0.2; }
+        .vc-label { font-size: 0.7rem; text-transform: uppercase; color: #777; letter-spacing: 1px; margin-bottom: 2px; display: block; }
+        .vc-value { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; display: block; font-family: 'Montserrat', sans-serif; }
+        .vc-footer { background: #f0f0f0; padding: 15px 25px; font-size: 0.7rem; text-align: center; color: #555; border-top: 1px solid #ddd; }
+        
+        @keyframes flipIn { from { transform: rotateY(90deg); opacity: 0; } to { transform: rotateY(0); opacity: 1; } }
 
         /* --- RESPONSIVE Y REDISEÑO MENÚ MÓVIL --- */
         @media (max-width: 992px) {
@@ -245,10 +361,12 @@
             nav.active a:nth-child(4) { animation-delay: 0.4s; }
             nav.active a:nth-child(5) { animation-delay: 0.5s; }
             nav.active a:nth-child(6) { animation-delay: 0.6s; }
+            nav.active a:nth-child(7) { animation-delay: 0.7s; } /* Enlace extra Personajes */
 
             nav a:hover, nav a.active-link { color: var(--emerald-hero); border-bottom-color: var(--emerald-hero); }
             
             .btn-small { transform: none !important; opacity: 1 !important; animation: none !important; margin-top: 20px; font-size: 1rem; padding: 15px 40px; }
+            .btn-close-menu { display: inline-flex; animation: fadeIn 1s ease forwards; }
             
             /* Ajuste Hero */
             .hero-main-title { font-size: 2.2rem; }
@@ -290,16 +408,22 @@
                 <a href="#inicio" onclick="toggleMenu()">INICIO</a>
                 <a href="#acciones" onclick="toggleMenu()">ACCIONES</a>
                 <a href="#agenda" onclick="toggleMenu()">AGENDA GUARDIANA</a>
+                <a href="#personajes" onclick="toggleMenu()">GUARDIANES</a> <!-- Nuevo enlace añadido -->
                 <a href="#noticias" onclick="toggleMenu()">NOTICIAS</a>
                 <a href="#concurso" onclick="toggleMenu()">CONCURSO</a>
                 <a href="#manifiesto" class="btn btn-primary btn-small" onclick="toggleMenu()">ÚNETE</a>
+                
+                <!-- Botón específico de cierre para móvil -->
+                <button class="btn btn-small btn-close-menu" onclick="toggleMenu()">
+                    <i class="fas fa-times"></i> CERRAR MENÚ
+                </button>
             </nav>
         </div>
     </header>
 
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <h1 class="hero-main-title">Cuidar el Teide es<br>cuidar lo que somos.</h1>
+            <h1 class="hero-main-title">Cuidar el Teide es<br>cuidar lo que somos</h1>
             <h2 class="hero-subtitle">Guardianes del Teide</h2>
             <div class="hero-buttons">
                 <a href="#acciones" class="btn btn-primary">Conoce el proyecto</a>
@@ -365,7 +489,7 @@
                 </div>
                 <div class="card-body">
                     <span class="card-tag">Biodiversidad</span>
-                    <h3>Custodia del Parque Nacional</h3>
+                    <h3>Custodia del Parque Nacional del Teide</h3>
                     <p>Cuidar el Parque es una tarea compartida. Acciones de implicación y respeto por un espacio único.</p>
                     <a href="#" class="card-link">Conocer especies</a>
                 </div>
@@ -446,7 +570,8 @@
         </div>
     </section>
 
-    <section class="characters-section">
+    <!-- SECCIÓN PERSONAJES (Añadido ID para el menú) -->
+    <section id="personajes" class="characters-section">
         <div class="container">
             <div class="section-header">
                 <h2>Jóvenes Guardianes</h2>
@@ -472,8 +597,9 @@
                     <button class="btn btn-primary" onclick="openPdfModal('manual-teidelovers.pdf')">
                         <i class="fas fa-book-open"></i> MANUAL TEIDELOVERS
                     </button>
+                    <!-- Nueva función para el modal gamificado -->
                     <button class="btn btn-orange" onclick="openHeroModal()">
-                        <i class="fas fa-mask"></i> LIGA DE GUARDIANES
+                        <i class="fas fa-gamepad"></i> UNIRME A LA LIGA
                     </button>
                 </div>
             </div>
@@ -549,7 +675,7 @@
                 <p>Sostenibilidad y protección integral del Parque Nacional. Una iniciativa para proteger nuestro legado volcánico.</p>
                 <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 Volcano Teide Experience.</p>
                 <div class="creator-credit">
-                    <span class="creator-tag">Developed by</span>
+                    <span class="creator-tag">Diseñado por</span>
                     <a href="#"><img src="images/chacho-creations-logo-fondo-oscuro.png" alt="Chacho Creations" class="creator-logo"></a>
                 </div>
             </div>
@@ -629,22 +755,132 @@
             } else { alert('Por favor, introduce un correo válido.'); }
         }
 
+        // --- NUEVA LÓGICA DE LA LIGA DE GUARDIANES (CON NOMBRE Y EMAIL) ---
+        
+        // PASO 1: SELECCIÓN DE EQUIPO
         function openHeroModal() {
             const modal = document.getElementById("mainModal");
             const injection = document.getElementById("modalInjection");
+            
             injection.innerHTML = `
-                <div class="hero-stats-container" style="color:white; text-align:center; padding:30px;">
-                    <h2 style="color:var(--emerald-hero); margin-bottom:10px;">LIGA DE SUPER-GUARDIANES</h2>
-                    <p>Tu compromiso activa las habilidades de los ancestros.</p>
-                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:20px; margin-top:30px;">
-                        <div><i class="fas fa-fire" style="color:orange; font-size:2rem;"></i><h3>GUAYOTA</h3><small>Reforestación: 85%</small></div>
-                        <div><i class="fas fa-sun" style="color:gold; font-size:2rem;"></i><h3>MAGEC</h3><small>Carbono Cero: 100%</small></div>
-                        <div><i class="fas fa-eye" style="color:skyblue; font-size:2rem;"></i><h3>ACHAMÁN</h3><small>Cielos Limpios: 70%</small></div>
+                <div class="hero-gamified-container">
+                    <h2 style="color:var(--emerald-hero); margin-bottom:10px;">¡LA ISLA TE NECESITA!</h2>
+                    <p>Para recibir tu Carnet Oficial, primero elige tu alianza ancestral.</p>
+                    
+                    <div class="hero-selection-grid">
+                        <!-- Guayota -->
+                        <div class="hero-option-card card-guayota" onclick="askForGuardianDetails('guayota')">
+                            <i class="fas fa-fire hero-icon-large" style="color:#777;"></i>
+                            <h3 style="color:white;">GUAYOTA</h3>
+                            <span class="hero-power" style="color:var(--guayota-red);">Fuego & Tierra</span>
+                            <p class="hero-bio">El gigante dormido. Custodia el corazón de fuego del Teide. Valor y fuerza de voluntad.</p>
+                        </div>
+                        
+                        <!-- Magec -->
+                        <div class="hero-option-card card-magec" onclick="askForGuardianDetails('magec')">
+                            <i class="fas fa-sun hero-icon-large" style="color:#777;"></i>
+                            <h3 style="color:white;">MAGEC</h3>
+                            <span class="hero-power" style="color:var(--magec-gold);">Luz & Vida</span>
+                            <p class="hero-bio">Espíritu del sol. Energía vital para los bosques. Ideal para amantes de la naturaleza.</p>
+                        </div>
+                        
+                        <!-- Achamán -->
+                        <div class="hero-option-card card-achaman" onclick="askForGuardianDetails('achaman')">
+                            <i class="fas fa-wind hero-icon-large" style="color:#777;"></i>
+                            <h3 style="color:white;">ACHAMÁN</h3>
+                            <span class="hero-power" style="color:var(--achaman-blue);">Cielo & Aire</span>
+                            <p class="hero-bio">El protector de los cielos azules y las estrellas. Para quienes sueñan en grande.</p>
+                        </div>
                     </div>
                 </div>
             `;
             modal.style.display = "flex";
             document.body.style.overflow = "hidden";
+        }
+
+        // PASO 2: FORMULARIO DE DATOS
+        function askForGuardianDetails(teamType) {
+            const injection = document.getElementById("modalInjection");
+            
+            // Colores según selección para darle feedback visual
+            let accentColor = "#fff";
+            let teamName = "";
+            if(teamType === 'guayota') { accentColor = "var(--guayota-red)"; teamName = "GUAYOTA"; }
+            else if(teamType === 'magec') { accentColor = "var(--magec-gold)"; teamName = "MAGEC"; }
+            else { accentColor = "var(--achaman-blue)"; teamName = "ACHAMÁN"; }
+
+            injection.innerHTML = `
+                <div class="hero-gamified-container">
+                    <i class="fas fa-user-shield" style="font-size:3rem; color:${accentColor}; margin-bottom:15px;"></i>
+                    <h2 style="color:white;">ALIANZA: <span style="color:${accentColor}">${teamName}</span></h2>
+                    <p>Para expedir tu credencial y enviártela, necesitamos tus datos.</p>
+                    
+                    <div style="margin-top:20px; display:flex; flex-direction:column; align-items:center;">
+                        <input type="text" id="gName" class="gamified-input" placeholder="Tu Nombre o Nickname" maxlength="15">
+                        <input type="email" id="gEmail" class="gamified-input" placeholder="Tu Correo Electrónico">
+                        
+                        <button class="btn btn-primary" style="margin-top:20px; background:${accentColor}; border:none;" onclick="generateGuardianCard('${teamType}')">
+                            GENERAR CARNET
+                        </button>
+                        <button class="btn btn-small" onclick="openHeroModal()" style="background:transparent; margin-top:10px; color:#777;">Volver atrás</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // PASO 3: GENERAR CARNET Y SIMULAR ENVÍO
+        function generateGuardianCard(type) {
+            const nameInput = document.getElementById("gName").value;
+            const emailInput = document.getElementById("gEmail").value;
+            
+            // Validación básica
+            if(nameInput.trim() === "" || emailInput.trim() === "") {
+                alert("¡Guardián! Necesitamos tu nombre y correo para el registro.");
+                return;
+            }
+
+            const injection = document.getElementById("modalInjection");
+            let data = {};
+            
+            if(type === 'guayota') {
+                data = { name: "EQUIPO GUAYOTA", color: "var(--guayota-red)", icon: "fa-fire", role: "Protector del Volcán" };
+            } else if (type === 'magec') {
+                data = { name: "EQUIPO MAGEC", color: "var(--magec-gold)", icon: "fa-sun", role: "Guardián de la Vida" };
+            } else {
+                data = { name: "EQUIPO ACHAMÁN", color: "var(--achaman-blue)", icon: "fa-star", role: "Vigilante del Cielo" };
+            }
+
+            // Generamos el HTML del Carnet FINAL
+            injection.innerHTML = `
+                <div class="hero-gamified-container">
+                    <h2 style="color:var(--emerald-hero); margin-bottom:10px;"><i class="fas fa-check-circle"></i> ¡REGISTRO COMPLETADO!</h2>
+                    <p style="font-size:0.9rem;">Hemos enviado una copia de alta resolución a: <br><strong style="color:white;">${emailInput}</strong></p>
+                    
+                    <div class="virtual-card-wrapper">
+                        <div class="vc-header" style="background:${data.color};">
+                            <span><i class="fas fa-fingerprint"></i> ID: TEIDE-2025-${Math.floor(Math.random() * 1000)}</span>
+                            <img src="images/logo-volcano.png" style="height:30px; filter:brightness(100);">
+                        </div>
+                        <div class="vc-body">
+                            <i class="fas ${data.icon} vc-avatar" style="color:${data.color};"></i>
+                            
+                            <span class="vc-label">Nombre del Guardián</span>
+                            <span class="vc-value" style="text-transform:uppercase;">${nameInput}</span>
+
+                            <span class="vc-label">Facción</span>
+                            <span class="vc-value" style="color:${data.color};">${data.name}</span>
+                            
+                            <span class="vc-label">Misión Actual</span>
+                            <span class="vc-value" style="font-size:1rem; font-weight:600;">${data.role}</span>
+                        </div>
+                        <div class="vc-footer">
+                            Certificado Oficial - Guardianes del Teide
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="closeModal()" style="margin-top:20px;">Entendido, cerrar</button>
+                </div>
+            `;
         }
 
         function animateValue(obj, start, end, duration) {
