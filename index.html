@@ -23,6 +23,7 @@
             --guayota-red: #e74c3c;
             --magec-gold: #f1c40f;
             --achaman-blue: #3498db;
+            --tassat-earth: #8d6e63; /* Color Tierra para Tassat */
         }
 
         html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
@@ -189,18 +190,94 @@
         .card-link { margin-top: auto; color: var(--forest-green); font-weight: bold; }
 
         /* --- PERSONAJES --- */
+        /* --- PERSONAJES --- */
+       /* --- PERSONAJES --- */
         .characters-section { padding: 100px 0; text-align: center; background-color: #f9f9f9; }
-        .character-flex { display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; }
-        .character-card { background: white; border-radius: 20px; overflow: hidden; width: 300px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: left; }
-        .character-img-wrapper { height: 350px; overflow: hidden; }
-        .character-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.5s; }
+        
+        /* SOLUCIÓN: Flexbox con centrado para que la última tarjeta no se quede a la izquierda */
+        .character-flex { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; /* Esto centra a Tassat si se queda solo abajo */
+            gap: 30px; 
+            margin-top: 50px; 
+        }
+
+        .character-card { 
+            background: white; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            /* Ancho flexible: Mínimo 260px, ideal 280px. Se ajusta para caber 4 */
+            flex: 1 1 260px; 
+            max-width: 320px; /* Tope para que no se estiren demasiado */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+            text-align: left; 
+            display: flex; 
+            flex-direction: column;
+        }
+
+        .character-img-wrapper { height: 350px; overflow: hidden; width: 100%; }
+        
+        .character-img { 
+            width: 100%; 
+            height: 100%; 
+            background-size: cover; 
+            background-position: center; 
+            transition: 0.5s; 
+        }
+        
         .character-card:hover .character-img { transform: scale(1.1); }
-        .character-info { padding: 25px; border-top: 4px solid var(--forest-green); }
+        
+        .character-info { 
+            padding: 25px; 
+            border-top: 4px solid var(--forest-green); 
+            flex-grow: 1; 
+        }
 
-        .guardian-tribute { margin-top: 60px; text-align: center; padding: 20px; }
-        .all-characters-img { max-width: 500px; width: auto; height: auto; max-height: 60vh; display: inline-block; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); animation: heroic-float 6s ease-in-out infinite; }
-        .teidelovers-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px; }
-
+        /* CORRECCIÓN FINAL ALINEACIÓN TRIBUTO */
+        .guardian-tribute { 
+            margin-top: 60px; 
+            padding: 20px; 
+            box-sizing: border-box; /* Vital: evita que el relleno desplace el centro */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Fuerza el centrado horizontal */
+            justify-content: center;
+        }
+        
+        .all-characters-img { 
+            max-width: 100%; 
+            width: auto; 
+            height: auto; 
+            max-height: 60vh; 
+            display: block; /* Asegura comportamiento de bloque */
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+            animation: heroic-float 6s ease-in-out infinite; 
+            margin-bottom: 30px; /* Espacio extra abajo */
+        }
+        
+        .teidelovers-actions { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+            width: 100%;
+        }
+        /* --- CORRECCIÓN CENTRADO IMAGEN FINAL Y BOTONES --- */
+        .guardian-tribute { 
+            margin-top: 60px; 
+            padding: 20px; 
+            
+            /* Esto asegura el centrado perfecto */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
         /* --- CONCURSO --- */
         .contest-section { background: var(--volcanic-dark); color: white; padding: 100px 0; }
         .contest-flex { display: flex; align-items: center; justify-content: center; gap: 60px; margin-bottom: 50px; }
@@ -298,6 +375,9 @@
         
         .card-achaman:hover { border-color: var(--achaman-blue); }
         .card-achaman:hover .hero-icon-large { color: var(--achaman-blue); text-shadow: 0 0 15px var(--achaman-blue); }
+
+        .card-tassat:hover { border-color: var(--tassat-earth); }
+        .card-tassat:hover .hero-icon-large { color: var(--tassat-earth); text-shadow: 0 0 15px var(--tassat-earth); }
 
         .hero-bio { font-size: 0.85rem; color: #aaa; margin-top: 10px; line-height: 1.5; text-align: left; }
         .hero-power { font-weight: bold; margin-top: 10px; display: block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;}
@@ -442,7 +522,7 @@
 
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <h1 class="hero-main-title">Cuidar el Teide es<br>cuidar lo que somos</h1>
+            <h1 class="hero-main-title">Cuidar el Teide es<br>cuidar lo que somos.</h1>
             <h2 class="hero-subtitle">Guardianes del Teide</h2>
             <div class="hero-buttons">
                 <a href="#acciones" class="btn btn-primary">Conoce el proyecto</a>
@@ -609,7 +689,14 @@
                     <div class="character-img-wrapper"><div class="character-img" style="background-image: url('images/personaje-achaman.jpeg');"></div></div>
                     <div class="character-info"><h3>Achamán</h3><p>Protector de los cielos y de la claridad de nuestras estrellas.</p></div>
                 </div>
-            </div>
+               <!-- PERSONAJE: TASSAT (CORREGIDO) -->
+                <div class="character-card">
+                    <div class="character-img-wrapper">
+                        <!-- Se ha añadido background-size: cover y position: top center para enfocar la cara -->
+                        <div class="character-img" style="background-image: url('images/personaje-tassat.png'); background-size: cover; background-position: top center;"></div>
+                    </div>
+                    <div class="character-info"><h3>Tassat</h3><p>Memoria viva del pueblo guanche. Armonía y respeto milenario por la montaña sagrada.</p></div>
+                </div>
             <div class="guardian-tribute">
                 <img src="images/legends.jpeg" alt="Guardianes" class="all-characters-img"><br>
                 <div class="teidelovers-actions">
@@ -810,6 +897,14 @@
                             <span class="hero-power" style="color:var(--achaman-blue);">Cielo & Aire</span>
                             <p class="hero-bio">El protector de los cielos azules y las estrellas. Para quienes sueñan en grande.</p>
                         </div>
+
+                        <!-- Tassat (NUEVO) -->
+                        <div class="hero-option-card card-tassat" onclick="askForGuardianDetails('tassat')">
+                            <i class="fas fa-hand-holding-heart hero-icon-large" style="color:#777;"></i>
+                            <h3 style="color:white;">TASSAT</h3>
+                            <span class="hero-power" style="color:var(--tassat-earth);">Historia & Respeto</span>
+                            <p class="hero-bio">La voz de los ancestros. Representa la convivencia en armonía con la naturaleza y el respeto profundo por Echeyde (El Teide).</p>
+                        </div>
                     </div>
                 </div>
             `;
@@ -826,7 +921,8 @@
             let teamName = "";
             if(teamType === 'guayota') { accentColor = "var(--guayota-red)"; teamName = "GUAYOTA"; }
             else if(teamType === 'magec') { accentColor = "var(--magec-gold)"; teamName = "MAGEC"; }
-            else { accentColor = "var(--achaman-blue)"; teamName = "ACHAMÁN"; }
+            else if(teamType === 'achaman') { accentColor = "var(--achaman-blue)"; teamName = "ACHAMÁN"; }
+            else { accentColor = "var(--tassat-earth)"; teamName = "TASSAT"; }
 
             injection.innerHTML = `
                 <div class="hero-gamified-container">
@@ -865,8 +961,10 @@
                 data = { name: "EQUIPO GUAYOTA", color: "var(--guayota-red)", icon: "fa-fire", role: "Protector del Volcán" };
             } else if (type === 'magec') {
                 data = { name: "EQUIPO MAGEC", color: "var(--magec-gold)", icon: "fa-sun", role: "Guardián de la Vida" };
-            } else {
+            } else if (type === 'achaman') {
                 data = { name: "EQUIPO ACHAMÁN", color: "var(--achaman-blue)", icon: "fa-star", role: "Vigilante del Cielo" };
+            } else {
+                data = { name: "EQUIPO TASSAT", color: "var(--tassat-earth)", icon: "fa-hand-holding-heart", role: "Guardiana de la Memoria" };
             }
 
             // Generamos el HTML del Carnet FINAL
