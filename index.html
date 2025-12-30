@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Guardianes del Teide | Compromiso y Acción</title>
+    <!-- Fuentes y Iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Vinculación a la Hoja de Estilos -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- MODAL ÚNICO -->
+    <div id="mainModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalInjection" style="height: 100%;">
+                <iframe id="modalFrame" src="" width="100%" height="100%" style="border:none; border-radius: 8px;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo-wrapper">
+                <div class="logo-volcano-zoom"><img src="images/logo-volcano.png" alt="Volcano Teide" class="logo-volcano"></div>
+                <div class="logo-text">GUARDIANES</div>
+                
+                <!-- CAMBIO REALIZADO: Enlace actualizado a volcano-plus.html -->
+                <a href="volcano-plus.html" class="volcano-plus-btn mobile-only-vplus">
+                    <img src="images/volcano+.png" alt="Volcano Plus" class="volcano-plus-img-mobile">
+                </a>
+            </div>
+
+            <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            
+            <nav id="navbar">
+                <a href="#inicio" onclick="toggleMenu()">INICIO</a>
+                <a href="#acciones" onclick="toggleMenu()">ACCIONES</a>
+                <a href="#agenda" onclick="toggleMenu()">AGENDA GUARDIANA</a>
+                <a href="#personajes" onclick="toggleMenu()">GUARDIANES</a>
+                <a href="#noticias" onclick="toggleMenu()">NOTICIAS</a>
+                <a href="#concurso" onclick="toggleMenu()">CONCURSO</a>
+                
+                <!-- Oculto en menú móvil, visible en escritorio -->
+                <a href="#manifiesto" class="btn btn-primary btn-small desktop-only-btn" onclick="toggleMenu()">ÚNETE</a>
+                
+                <!-- CAMBIO REALIZADO: Enlace actualizado a volcano-plus.html -->
+                <a href="volcano-plus.html" class="volcano-plus-btn desktop-only-vplus">
+                    <img src="images/volcano+.png" alt="Volcano Plus" class="volcano-plus-img" title="¡Descubre más!">
+                </a>
+
+                <button class="btn btn-small btn-close-menu" onclick="toggleMenu()">
+                    <i class="fas fa-times"></i> CERRAR MENÚ
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-main-title">Cuidar el Teide es<br>cuidar lo que somos</h1>
+            <h2 class="hero-subtitle">Guardianes del Teide</h2>
+            <div class="hero-buttons">
+                <a href="#acciones" class="btn btn-orange">Conoce el proyecto</a>
+                <a href="javascript:void(0)" class="btn btn-orange" onclick="openPdfModal('manifiesto.pdf')">
+                    <i class="fas fa-file-pdf"></i> Manifiesto PDF
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="impact-counter">
+            <div class="container counter-grid">
+                <div class="counter-item"><h3 id="count-trees">0</h3><p>Árboles Objetivo</p></div>
+                <div class="counter-item"><h3 id="count-co2">0</h3><p>Ton CO2 Evitadas</p></div>
+                <div class="counter-item"><h3 id="count-guardians">0</h3><p>Guardianes Activos</p></div>
+                <div class="counter-item"><h3>100%</h3><p>Energía Solar</p></div>
+            </div>
+        </div>
+        
+        <div class="mobile-cta-section">
+            <a href="#manifiesto" class="btn btn-primary btn-mobile-premium">
+                <i class="fas fa-users"></i> ÚNETE A LA MISIÓN
+            </a>
+        </div>
+    </div>
+
+    <!-- SECCIÓN VÍDEO PRESENTACIÓN -->
+    <section class="presentation-video-section">
+        <div class="video-presentation-wrapper">
+            <video id="main-presentation-video" autoplay muted loop playsinline webkit-playsinline preload="auto" class="bg-presentation-video">
+                <source src="videos/presentacion-guardianes.mp4" type="video/mp4">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-beautiful-aerial-view-of-the-teide-volcano-in-spain-32631-large.mp4" type="video/mp4">
+            </video>
+            <div class="video-presentation-overlay">
+                <div class="container">
+                    <div class="presentation-content">
+                        <h2>El Alma de la Organización</h2>
+                        <p>No somos solo un proyecto, somos la voluntad de una isla decidida a proteger su mayor tesoro. Conoce nuestra historia, nuestra metodología y nuestro compromiso innegociable con el Teide.</p>
+                        <a href="#manifiesto" class="btn btn-primary">Únete a la Misión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="acciones" class="container" style="padding: 100px 0;">
+        <div class="section-header">
+            <h2>Acciones con Impacto Real</h2>
+            <p>Proyectos destinados a la conservación y cuidado de nuestro paisaje.</p>
+        </div>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-img" style="--bg-img: url('images/accion-arboles.jpeg');"></div>
+                <div class="card-body">
+                    <span class="card-tag">Conservación</span>
+                    <h3>Raíces del Teide</h3>
+                    <p>Un compromiso a largo plazo con el territorio. 50.000 árboles en 5 años para restaurar zonas degradadas.</p>
+                    <a href="#" class="card-link">Ver progreso</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img video-card" style="background: #000;">
+                    <video autoplay muted loop playsinline webkit-playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+                        <source src="videos/custodia-teide.mp4" type="video/mp4">
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-clouds-and-blue-sky-over-a-mountain-range-32630-large.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="card-body">
+                    <span class="card-tag">Biodiversidad</span>
+                    <h3>Custodia del Parque Nacional</h3>
+                    <p>Cuidar el Parque es una tarea compartida. Acciones de implicación y respeto por un espacio único.</p>
+                    <a href="#" class="card-link">Conocer especies</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img" style="--bg-img: url('images/accion-ciencia.jpeg');"></div>
+                <div class="card-body">
+                    <span class="card-tag">Ciencia</span>
+                    <h3>Me Quiere, No me Quiere</h3>
+                    <p>La biodiversidad nos da pistas. Una invitación a comprender el equilibrio natural del Teide.</p>
+                    <a href="#" class="card-link">Descubrir datos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agenda" class="agenda-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Agenda Guardiana 2026</h2>
+                <p>Experiencias inmersivas para la conservación del ecosistema.</p>
+            </div>
+            
+            <div class="agenda-grid">
+                <div class="agenda-card">
+                    <div class="agenda-card-header" style="background: var(--forest-green);">
+                        <div class="agenda-card-date"><span class="day">15</span><span class="month">Marzo</span></div>
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="agenda-card-body">
+                        <span class="agenda-status-pill status-open">Plazas Disponibles</span>
+                        <h3>Siembra Colectiva: El Gran Pinar</h3>
+                        <p>Acompaña a nuestros expertos en una jornada de restauración forestal intensiva en las zonas altas.</p>
+                    </div>
+                    <div class="agenda-card-footer">
+                        <button class="btn btn-primary btn-small" onclick="openReminderModal('Siembra Colectiva')">
+                            <i class="fas fa-bell"></i> Avisarme
+                        </button>
+                    </div>
+                </div>
+
+                <div class="agenda-card">
+                    <div class="agenda-card-header" style="background: var(--teide-violet);">
+                        <div class="agenda-card-date"><span class="day">22</span><span class="month">Junio</span></div>
+                        <i class="fas fa-star-and-crescent"></i>
+                    </div>
+                    <div class="agenda-card-body">
+                        <span class="agenda-status-pill status-full">Evento Completo</span>
+                        <h3>Noche de Estrellas y Mitología</h3>
+                        <p>Observación guiada bajo uno de los cielos más limpios del planeta, uniendo ciencia y leyendas aborígenes.</p>
+                    </div>
+                    <div class="agenda-card-footer">
+                        <button class="btn btn-primary btn-small" style="opacity: 0.6;" onclick="openReminderModal('Noche de Estrellas')">
+                            <i class="fas fa-bell"></i> Lista de Espera
+                        </button>
+                    </div>
+                </div>
+
+                <div class="agenda-card">
+                    <div class="agenda-card-header" style="background: var(--volcanic-dark);">
+                        <div class="agenda-card-date"><span class="day">10</span><span class="month">Octubre</span></div>
+                        <i class="fas fa-mountain-sun"></i>
+                    </div>
+                    <div class="agenda-card-body">
+                        <span class="agenda-status-pill status-soon">Próximamente</span>
+                        <h3>Limpieza de Senderos Históricos</h3>
+                        <p>Participa en la restauración y limpieza de los trazados tradicionales para un uso público sostenible.</p>
+                    </div>
+                    <div class="agenda-card-footer">
+                        <button class="btn btn-primary btn-small" onclick="openReminderModal('Limpieza de Senderos')">
+                            <i class="fas fa-bell"></i> Notificar Apertura
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="personajes" class="characters-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Jóvenes Guardianes</h2>
+                <p>Los elementos ancestrales que protegen la isla de Tenerife.</p>
+            </div>
+            <div class="character-flex">
+                <div class="character-card">
+                    <div class="character-img-wrapper"><div class="character-img" style="background-image: url('images/personaje-guayota.jpeg');"></div></div>
+                    <div class="character-info"><h3>Guayota</h3><p>Poder volcánico y fuerza interior. La energía latente de la tierra.</p></div>
+                </div>
+                <div class="character-card">
+                    <div class="character-img-wrapper"><div class="character-img" style="background-image: url('images/personaje-magec.png'); background-size: contain; background-repeat: no-repeat; background-position: bottom;"></div></div>
+                    <div class="character-info"><h3>Magec</h3><p>Espíritu del Sol. Energía vital para el crecimiento de la vida.</p></div>
+                </div>
+                <div class="character-card">
+                    <div class="character-img-wrapper"><div class="character-img" style="background-image: url('images/personaje-achaman.jpeg');"></div></div>
+                    <div class="character-info"><h3>Achamán</h3><p>Protector de los cielos y de la claridad de nuestras estrellas.</p></div>
+                </div>
+                <div class="character-card">
+                    <div class="character-img-wrapper">
+                        <div class="character-img" style="background-image: url('images/personaje-tassat.png'); background-size: cover; background-position: top center;"></div>
+                    </div>
+                    <div class="character-info"><h3>Tassat</h3><p>Memoria viva del pueblo guanche. Armonía y respeto milenario por la montaña sagrada.</p></div>
+                </div>
+            <div class="guardian-tribute">
+                <img src="images/legends.jpeg" alt="Guardianes" class="all-characters-img"><br>
+                <div class="teidelovers-actions">
+                    <button class="btn btn-primary" onclick="openPdfModal('manual-teidelovers.pdf')">
+                        <i class="fas fa-book-open"></i> MANUAL TEIDELOVERS
+                    </button>
+                    <button class="btn btn-orange" onclick="openHeroModal()">
+                        <i class="fas fa-gamepad"></i> UNIRME A LA LIGA
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="noticias" style="padding: 100px 0;">
+        <div class="container">
+            <div class="section-header"><h2>Actualidad Guardianes</h2></div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-img" style="--bg-img: url('images/galeria-1.jpeg');"></div>
+                    <div class="card-body"><h3>Reforestación Invernal</h3><p>Superamos los 10.000 ejemplares plantados gracias al apoyo voluntario.</p><a href="#" class="card-link">Ver el reto</a></div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="--bg-img: url('images/noche.jpeg');"></div>
+                    <div class="card-body"><h3>Fauna Nocturna</h3><p>Teide Lab detecta un incremento en la actividad de especies protegidas.</p><a href="#" class="card-link">Descubrir programa</a></div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="--bg-img: url('images/galeria-4.jpeg');"></div>
+                    <div class="card-body"><h3>Taller Astrofotografía</h3><p>Aprende a capturar la Vía Láctea desde el Parque Nacional.</p><a href="#" class="card-link">Descubrir más</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="concurso" class="contest-section">
+        <div class="container">
+            <div class="contest-flex">
+                <div class="contest-logo-wrapper"><img src="images/logo-fototeide.png" alt="FotoTeide" class="contest-logo-img"></div>
+                <div class="contest-info">
+                    <h2>Tu mirada es importante</h2>
+                    <p>Captura la esencia del Teide en cualquier estación y participa en nuestro concurso trimestral.</p>
+                    <a href="#" class="btn btn-primary" style="background:white; color:black;">Bases del Concurso</a>
+                </div>
+            </div>
+            <div class="contest-gallery-strip">
+                <div class="strip-item" style="background-image: url('images/galeria-1.jpeg')"></div>
+                <div class="strip-item" style="background-image: url('images/galeria-2.jpeg')"></div>
+                <div class="strip-item" style="background-image: url('images/galeria-3.jpeg')"></div>
+                <div class="strip-item" style="background-image: url('images/galeria-4.jpeg')"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners-section">
+        <div class="container">
+            <h2 style="font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px;">Alianzas Estratégicas</h2>
+            <div class="partners-grid">
+                <div class="partner-item">Cabildo de Tenerife</div>
+                <div class="partner-item">Fundación Foresta</div>
+                <div class="partner-item">Universidad de La Laguna</div>
+                <div class="partner-item">Volcano Teide</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="manifiesto" style="padding: 100px 0; text-align: center; background: #f9f9f9;">
+        <div class="container">
+            <h2>Firma el Manifiesto</h2>
+            <p>Únete a los miles de personas que ya se han comprometido con el futuro del Teide.</p>
+            <form style="margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                <input type="email" placeholder="Tu correo electrónico" style="padding: 15px 25px; border-radius: 50px; border: 1px solid #ccc; width: 300px;">
+                <button type="submit" class="btn btn-primary">Firmar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>GUARDIANES DEL TEIDE</h4>
+                <p>Sostenibilidad y protección integral del Parque Nacional. Una iniciativa para proteger nuestro legado volcánico.</p>
+                <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 Volcano Teide Experience.</p>
+                <div class="creator-credit">
+                    <span class="creator-tag">Diseñado por</span>
+                    <a href="#"><img src="images/chacho-creations-logo-fondo-oscuro.png" alt="Chacho Creations" class="creator-logo"></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Alianzas</h4>
+                <ul>
+                    <li><a href="#">Cabildo de Tenerife</a></li>
+                    <li><a href="#">Fundación Foresta</a></li>
+                    <li><a href="#">Universidad de La Laguna</a></li>
+                    <li><a href="#">Teleférico del Teide</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces y Legal</h4>
+                <ul>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Aviso Legal</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Política de Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Vinculación al Archivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,727 @@
+/* --- ESTILOS GENERALES --- */
+:root {
+    --volcanic-dark: #1a1a1a;
+    --teide-violet: #8e44ad;
+    --forest-green: #27ae60;
+    --emerald-hero: #2ecc71;
+    --white: #ffffff;
+    --light-gray: #f4f4f4;
+    --text-color: #333;
+    --shadow-standard: 0 4px 15px rgba(0, 0, 0, 0.15);
+    
+    /* Colores Personajes */
+    --guayota-red: #e74c3c;
+    --magec-gold: #f1c40f;
+    --achaman-blue: #3498db;
+    --tassat-earth: #8d6e63; /* Color Tierra para Tassat */
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0; padding: 0;
+    color: var(--text-color);
+    background-color: var(--white);
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; margin: 0; }
+a { text-decoration: none; transition: 0.3s; }
+ul { list-style: none; padding: 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; }
+
+/* --- BOTONES --- */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 15px 32px; border-radius: 50px;
+    font-weight: 700; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;
+    font-size: 0.85rem; border: none; text-align: center;
+    box-shadow: var(--shadow-standard);
+}
+.btn-primary { background-color: var(--forest-green); color: white; }
+.btn-primary:hover { background-color: #219150; transform: scale(1.05); box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3); }
+
+/* Actualizado a un naranja más intenso "Volcano Teide" */
+.btn-orange { background-color: #ff6b00; color: white; }
+.btn-orange:hover { background-color: #d35400; transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3); }
+
+.btn-small { padding: 10px 22px; font-size: 0.75rem; }
+
+/* Boton cerrar menú movil específico (dentro del nav) */
+.btn-close-menu {
+    display: none; /* Oculto en escritorio */
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(0,0,0,0.2);
+    color: white;
+    margin-top: 30px;
+}
+.btn-close-menu:hover { background: rgba(255,255,255,0.1); }
+
+/* --- HEADER --- */
+header {
+    background-color: rgba(26, 26, 26, 0.98);
+    position: fixed; width: 100%; z-index: 2000; padding: 12px 0; top: 0; left: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.nav-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
+.logo-wrapper { display: flex; align-items: center; gap: 12px; }
+.logo-volcano-zoom {
+    height: 44px; width: 72px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; background-color: white; border-radius: 4px;
+}
+.logo-volcano { height: 100%; width: 100%; object-fit: cover; transform: scale(1.4); object-position: -3px center; } 
+.logo-text { color: white; font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; }
+
+nav { display: flex; gap: 22px; align-items: center; }
+nav a:not(.volcano-plus-btn) { color: white; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+nav a:not(.volcano-plus-btn):hover { color: var(--forest-green); }
+
+/* CORRECCIÓN MENU TOGGLE: z-index alto para estar sobre el overlay */
+.menu-toggle { 
+    display: none; 
+    color: white; 
+    font-size: 1.6rem; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    padding: 5px; 
+    position: relative;
+    z-index: 2001; /* Asegura que esté por encima del menú desplegado */
+}
+
+/* --- ESTILOS LOGO VOLCANO+ (ESCRITORIO) --- */
+.volcano-plus-btn {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 15px;
+    position: relative;
+    text-decoration: none;
+}
+
+.volcano-plus-img {
+    height: 100px;
+    width: auto;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: pulse-attention 2.5s infinite ease-in-out;
+}
+
+.volcano-plus-btn:hover .volcano-plus-img {
+    animation-play-state: paused;
+    transform: scale(1.15) rotate(5deg);
+    filter: drop-shadow(0 0 10px rgba(255, 107, 0, 0.8));
+}
+
+@keyframes pulse-attention {
+    0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(255, 107, 0, 0)); }
+    50% { transform: scale(1.1); filter: drop-shadow(0 0 8px rgba(255, 107, 0, 0.5)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(255, 107, 0, 0)); }
+}
+
+/* --- HERO --- */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero-fondo.jpg');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; color: white; padding-top: 60px;
+}
+.hero-main-title { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; }
+.hero-subtitle {
+    font-size: 1.2rem; font-weight: 800; text-transform: uppercase; 
+    letter-spacing: 2px; color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px; border-bottom: 2px solid var(--forest-green); padding-bottom: 5px;
+    display: inline-block;
+}
+.hero-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+/* --- IMPACTO --- */
+.impact-counter {
+    background-color: var(--volcanic-dark); color: white; padding: 60px 0;
+    margin-top: -80px; position: relative; z-index: 10; border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
+.counter-item h3 { font-size: 3rem; color: var(--forest-green); margin-bottom: 10px; }
+
+/* --- SECCIÓN VÍDEO PRESENTACIÓN --- */
+.presentation-video-section {
+    width: 100%; height: auto; margin: 80px 0;
+    background: var(--volcanic-dark);
+}
+.video-presentation-wrapper { display: flex; flex-direction: column; }
+.bg-presentation-video { width: 100%; height: 550px; object-fit: cover; display: block; }
+.video-presentation-overlay { background: var(--volcanic-dark); padding: 80px 0; display: block; width: 100%; }
+.presentation-content { max-width: 850px; color: white; text-align: left; margin: 0 auto; }
+.presentation-content h2 { font-size: 2.8rem; margin-bottom: 20px; text-transform: uppercase; line-height: 1.1; }
+.presentation-content p { font-size: 1.25rem; line-height: 1.7; margin-bottom: 40px; color: rgba(255, 255, 255, 0.85); }
+
+/* --- REDISEÑO AGENDA GUARDIANA --- */
+.agenda-section { padding: 100px 0; background-color: #fcfcfc; }
+.agenda-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px; 
+    margin-top: 50px; 
+}
+.agenda-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid #f0f0f0;
+}
+.agenda-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+.agenda-card-header { padding: 30px; color: white; display: flex; justify-content: space-between; align-items: center; position: relative; }
+.agenda-card-header::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 40px; background: linear-gradient(to top, rgba(0,0,0,0.1), transparent); }
+.agenda-card-date { line-height: 1; z-index: 2; }
+.agenda-card-date .day { font-size: 2.2rem; font-weight: 800; display: block; }
+.agenda-card-date .month { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.agenda-card-header i { font-size: 2.5rem; opacity: 0.3; z-index: 1; }
+
+.agenda-card-body { padding: 30px; flex-grow: 1; }
+.agenda-card-body h3 { font-size: 1.25rem; margin-bottom: 12px; color: var(--volcanic-dark); line-height: 1.3; }
+.agenda-card-body p { font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 20px; }
+
+.agenda-status-pill { display: inline-block; padding: 5px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
+.status-open { background: #e8f5e9; color: #2e7d32; }
+.status-full { background: #ffebee; color: #c62828; }
+.status-soon { background: #e3f2fd; color: #1565c0; }
+
+.agenda-card-footer { padding: 20px 30px; border-top: 1px solid #f0f0f0; background: #fafafa; display: flex; justify-content: center; }
+.agenda-card-footer .btn { width: 100%; }
+
+/* --- ACCIONES --- */
+.section-header { text-align: center; margin-bottom: 60px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+.card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: 0.3s ease; display: flex; flex-direction: column; }
+.card:hover { transform: translateY(-10px); }
+.card-img { position: relative; height: 250px; overflow: hidden; background-color: #000; }
+.card-img:not(.video-card)::before { content: ""; position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px; background-image: var(--bg-img); background-size: cover; background-position: center; filter: blur(12px) brightness(0.6); z-index: 1; }
+.card-img:not(.video-card)::after { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: var(--bg-img); background-size: contain; background-repeat: no-repeat; background-position: center; z-index: 2; }
+.card-body { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+.card-tag { background: var(--light-gray); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; width: fit-content; margin-bottom: 15px; color: var(--forest-green); }
+.card-link { margin-top: auto; color: var(--forest-green); font-weight: bold; }
+
+/* --- PERSONAJES --- */
+.characters-section { padding: 100px 0; text-align: center; background-color: #f9f9f9; }
+
+.character-flex { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 30px; 
+    margin-top: 50px; 
+}
+
+.character-card { 
+    background: white; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    flex: 1 1 260px; 
+    max-width: 320px; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+    text-align: left; 
+    display: flex; 
+    flex-direction: column;
+}
+
+.character-img-wrapper { height: 350px; overflow: hidden; width: 100%; }
+
+.character-img { 
+    width: 100%; 
+    height: 100%; 
+    background-size: cover; 
+    background-position: center; 
+    transition: 0.5s; 
+}
+
+.character-card:hover .character-img { transform: scale(1.1); }
+
+.character-info { 
+    padding: 25px; 
+    border-top: 4px solid var(--forest-green); 
+    flex-grow: 1; 
+}
+
+.guardian-tribute { 
+    margin-top: 60px; 
+    padding: 20px; 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.all-characters-img { 
+    max-width: 100%; 
+    width: auto; 
+    height: auto; 
+    max-height: 60vh; 
+    display: block; 
+    border-radius: 20px; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+    animation: heroic-float 6s ease-in-out infinite; 
+    margin-bottom: 30px;
+}
+
+.teidelovers-actions { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+    width: 100%;
+}
+
+/* --- CONCURSO --- */
+.contest-section { background: var(--volcanic-dark); color: white; padding: 100px 0; }
+.contest-flex { display: flex; align-items: center; justify-content: center; gap: 60px; margin-bottom: 50px; }
+.contest-logo-wrapper { flex: 0 0 260px; width: 260px; height: 260px; border: 2px solid white; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: black; }
+.contest-logo-img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.9); }
+.contest-gallery-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 40px; }
+.strip-item { height: 200px; background-size: cover; background-position: center; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); }
+
+/* --- ALIANZAS --- */
+.partners-section { padding: 80px 0; background-color: #fff; text-align: center; border-top: 1px solid #eee; }
+.partners-grid { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; margin-top: 40px; }
+.partner-item { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #999; font-size: 1.2rem; filter: grayscale(1); opacity: 0.7; transition: 0.3s; }
+.partner-item:hover { filter: grayscale(0); opacity: 1; color: var(--volcanic-dark); }
+
+/* --- FOOTER Y LOGO CREADOR --- */
+footer { background-color: #0a0a0a; color: #777; padding: 80px 0 40px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; }
+.footer-grid h4 { color: white; margin-bottom: 25px; font-size: 1.1rem; text-transform: uppercase; }
+.footer-grid ul li { margin-bottom: 12px; }
+.footer-grid ul li a { color: #777; font-size: 0.9rem; }
+.footer-grid ul li a:hover { color: var(--forest-green); }
+
+.creator-credit { margin-top: 40px; border-top: 1px solid #222; padding-top: 25px; display: flex; flex-direction: column; align-items: flex-start; }
+.creator-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #444; margin-bottom: 10px; }
+.creator-logo { height: 38px; width: auto; opacity: 0.6; transition: 0.3s; filter: grayscale(1) brightness(1.5); }
+.creator-logo:hover { opacity: 1; filter: grayscale(0) brightness(1); transform: translateY(-3px); }
+
+/* --- MODALES --- */
+.modal-overlay { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+.modal-content { width: 90%; height: 85vh; max-width: 1000px; position: relative; overflow-y: auto; }
+
+.close-modal { 
+    position: absolute; 
+    top: 15px; 
+    right: 15px; 
+    color: #333; 
+    font-size: 2rem; 
+    cursor: pointer; 
+    z-index: 3010;
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.reminder-content { background: white; padding: 50px; border-radius: 25px; text-align: center; max-width: 450px; margin: 0 auto; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+.reminder-content i { font-size: 4rem; color: var(--forest-green); margin-bottom: 25px; }
+.reminder-content input { width: 100%; padding: 18px; margin: 25px 0; border-radius: 50px; border: 1px solid #ddd; box-sizing: border-box; font-size: 1rem; }
+
+/* --- GAMIFICACION --- */
+.hero-gamified-container {
+    background-color: #121212;
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.hero-selection-grid { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+.hero-option-card {
+    background: #222;
+    border: 2px solid #333;
+    border-radius: 15px;
+    padding: 20px;
+    width: 250px;
+    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.hero-option-card:hover { transform: translateY(-10px); border-color: var(--white); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+.hero-icon-large { font-size: 3.5rem; margin-bottom: 15px; display: block; }
+
+.card-guayota:hover { border-color: var(--guayota-red); }
+.card-guayota:hover .hero-icon-large { color: var(--guayota-red); text-shadow: 0 0 15px var(--guayota-red); }
+.card-magec:hover { border-color: var(--magec-gold); }
+.card-magec:hover .hero-icon-large { color: var(--magec-gold); text-shadow: 0 0 15px var(--magec-gold); }
+.card-achaman:hover { border-color: var(--achaman-blue); }
+.card-achaman:hover .hero-icon-large { color: var(--achaman-blue); text-shadow: 0 0 15px var(--achaman-blue); }
+.card-tassat:hover { border-color: var(--tassat-earth); }
+.card-tassat:hover .hero-icon-large { color: var(--tassat-earth); text-shadow: 0 0 15px var(--tassat-earth); }
+
+.hero-bio { font-size: 0.85rem; color: #aaa; margin-top: 10px; line-height: 1.5; text-align: left; }
+.hero-power { font-weight: bold; margin-top: 10px; display: block; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;}
+
+.gamified-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #444;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 300px;
+    margin: 10px 0;
+    font-size: 1rem;
+    text-align: center;
+}
+.gamified-input:focus { border-color: var(--emerald-hero); outline: none; background: rgba(255, 255, 255, 0.2); }
+.gamified-input::placeholder { color: #aaa; }
+
+.virtual-card-wrapper {
+    background: linear-gradient(135deg, #eee 0%, #fff 100%);
+    color: #333;
+    max-width: 400px;
+    margin: 30px auto;
+    border-radius: 15px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    position: relative;
+    text-align: left;
+    animation: flipIn 0.8s ease;
+}
+.vc-header { padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center; }
+.vc-body { padding: 25px; }
+.vc-avatar { float: right; font-size: 4rem; opacity: 0.2; }
+.vc-label { font-size: 0.7rem; text-transform: uppercase; color: #777; letter-spacing: 1px; margin-bottom: 2px; display: block; }
+.vc-value { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; display: block; font-family: 'Montserrat', sans-serif; }
+.vc-footer { background: #f0f0f0; padding: 15px 25px; font-size: 0.7rem; text-align: center; color: #555; border-top: 1px solid #ddd; }
+
+@keyframes flipIn { from { transform: rotateY(90deg); opacity: 0; } to { transform: rotateY(0); opacity: 1; } }
+
+/* --- RESPONSIVE Y REDISEÑO --- */
+@media (max-width: 992px) {
+    .counter-grid { grid-template-columns: repeat(2, 1fr); }
+    .bg-presentation-video { height: 400px; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .creator-credit { align-items: center; }
+}
+
+/* 
+   --- LOGICA DE VISIBILIDAD DE BOTONES MOVIL VS ESCRITORIO ---
+*/
+.mobile-only-vplus, .mobile-cta-section {
+    display: none !important;
+}
+.desktop-only-btn, .desktop-only-vplus {
+    display: inline-flex !important;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    
+    /* CAMBIO MÓVIL: Logo Volcano+ AUMENTADO y con sombra */
+    .mobile-only-vplus {
+        display: flex !important;
+        align-items: center;
+        margin-left: 30px;
+        /* Animación de latido con brillo para invitar al click */
+        animation: heartbeat-glow 2s infinite ease-in-out;
+    }
+    
+    @keyframes heartbeat-glow {
+        0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(255,107,0,0.5)); }
+        15% { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(255,107,0,0.9)); }
+        30% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(255,107,0,0.5)); }
+        45% { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(255,107,0,0.9)); }
+        100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(255,107,0,0.5)); }
+    }
+
+    .volcano-plus-img-mobile {
+        height: 75px; /* Altura aumentada significativamente (antes 38px) */
+        width: auto;
+    }
+
+    /* Ocultar elementos de escritorio */
+    .desktop-only-vplus, .desktop-only-btn {
+        display: none !important;
+    }
+
+    /* Sección ÚNETE Móvil Rediseñada */
+    .mobile-cta-section {
+        display: block !important;
+        margin-top: 0; 
+        padding: 0 20px 20px;
+        text-align: center;
+        position: relative;
+        z-index: 20;
+    }
+    
+    /* ESTILO BOTÓN MÓVIL PREMIUM */
+    .btn-mobile-premium {
+        width: auto;
+        min-width: 200px;
+        display: inline-flex;
+        padding: 12px 35px;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Sombra elegante */
+        border: 1px solid rgba(255,255,255,0.2);
+        background: linear-gradient(135deg, var(--forest-green) 0%, #219150 100%);
+    }
+    .btn-mobile-premium:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+    }
+    
+    /* --- MENU MOVIL --- */
+    nav {
+        display: none; 
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        background: linear-gradient(135deg, rgba(15, 15, 15, 0.98) 0%, rgba(30, 30, 30, 0.95) 100%);
+        backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        flex-direction: column; justify-content: center; align-items: center;
+        gap: 25px; z-index: 1999;
+        padding-top: 50px;
+    }
+    nav.active { display: flex; animation: fadeIn 0.4s ease forwards; }
+    
+    nav a:not(.volcano-plus-btn) {
+        font-size: 1.1rem; letter-spacing: 3px; font-weight: 700;
+        color: rgba(255, 255, 255, 0.7); border-bottom: 2px solid transparent;
+        padding: 10px 0; transform: translateY(20px); opacity: 0;
+    }
+    nav.active a:not(.volcano-plus-btn) { animation: slideInUp 0.5s ease forwards; }
+    nav.active a:nth-child(1) { animation-delay: 0.1s; }
+    nav.active a:nth-child(2) { animation-delay: 0.2s; }
+    nav.active a:nth-child(3) { animation-delay: 0.3s; }
+    nav.active a:nth-child(4) { animation-delay: 0.4s; }
+    nav.active a:nth-child(5) { animation-delay: 0.5s; }
+    nav.active a:nth-child(6) { animation-delay: 0.6s; }
+    nav.active a:nth-child(7) { animation-delay: 0.7s; } 
+
+    nav a:not(.volcano-plus-btn):hover, nav a.active-link { color: var(--emerald-hero); border-bottom-color: var(--emerald-hero); }
+
+    .btn-close-menu { display: inline-flex; animation: fadeIn 1s ease forwards; }
+    
+    .hero-main-title { font-size: 2.2rem; }
+    .presentation-content h2 { font-size: 1.8rem; }
+
+    /* --- FIX OPTIMIZACION CONCURSO MOVIL --- */
+    .contest-section { padding: 60px 0; }
+    .contest-flex { flex-direction: column; gap: 30px; text-align: center; }
+    .contest-logo-wrapper { width: 180px; height: 180px; flex: none; }
+    .contest-gallery-strip { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .strip-item { height: 140px; }
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideInUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes heroic-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+/* --- ESTILOS VOLCANO PLUS --- */
+
+/* Hero específico para la subpágina */
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--primary-orange);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* ISO Section */
+.iso-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+.iso-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    border-top: 5px solid var(--forest-green);
+}
+.iso-card i {
+    font-size: 3rem;
+    color: var(--forest-green);
+    margin-bottom: 15px;
+}
+.check-list {
+    list-style: none;
+    margin-top: 20px;
+}
+.check-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.check-list i {
+    color: var(--primary-orange);
+}
+
+/* Customer Journey Steps */
+.journey-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+.step-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+.step-card:hover {
+    transform: translateY(-5px);
+}
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--teide-violet);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 20px;
+}
+
+/* Decálogo Grid */
+.decalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.decalogo-item {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+.decalogo-item .num {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--primary-orange);
+    line-height: 1;
+}
+
+/* Gestión Residuos Cards */
+.waste-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+.waste-card {
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid transparent;
+}
+.waste-card i {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+.waste-card.yellow { border-color: #F1C40F; color: #F1C40F; }
+.waste-card.yellow p, .waste-card.yellow small { color: #eee; }
+
+.waste-card.blue { border-color: #3498DB; color: #3498DB; }
+.waste-card.blue p, .waste-card.blue small { color: #eee; }
+
+.waste-card.green { border-color: #2ECC71; color: #2ECC71; }
+.waste-card.green p, .waste-card.green small { color: #eee; }
+
+.waste-stats {
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 50px;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .iso-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- CORRECCIONES VOLCANO PLUS --- */
+
+/* 1. Forzar tamaño del logo en la cabecera */
+header .logo-volcano {
+    max-height: 50px; /* Tamaño máximo para que no se vea gigante */
+    width: auto;
+    object-fit: contain;
+}
+
+/* Ajuste del contenedor del logo para que quede alineado */
+header .logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 70%; /* Evita que empuje el menú hamburguesa fuera */
+}
+
+header .logo-text {
+    font-size: 1rem;
+    line-height: 1.2;
+    white-space: nowrap; /* Evita que el texto se parta raro */
+}
+
+/* 2. Solución para el fondo Hero si falta la imagen */
+/* Si la imagen da error, se verá un degradado bonito volcánico */
+.hero-plus {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('images/bg-hero.jpg'); /* Usamos una imagen que SÍ tengas, o un color */
+    background-color: #333; /* Fallback color */
+    background-size: cover;
+    background-position: center;
+    height: 50vh; /* Altura controlada para móvil */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 80px; /* Espacio para que no lo tape el header fijo */
+}
+
+.hero-plus .hero-content {
+    padding: 0 20px;
+}
+
+.hero-plus h1 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* Ajuste móvil específico */
+@media (max-width: 768px) {
+    header .logo-text {
+        font-size: 0.9rem; /* Texto más pequeño en móvil */
+    }
+    .hero-plus {
+        height: 60vh;
+        margin-top: 60px;
+    }
+}

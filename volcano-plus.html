@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Volcano Plus | Excelencia y Sostenibilidad</title>
+    
+    <!-- Fuentes y Iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Vinculación a la Hoja de Estilos Principal -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --plus-orange: #e67e22; /* Color corporativo */
+            --plus-dark: #2c3e50;
+            --plus-grey: #f4f6f7;
+        }
+
+        /* --- HEADER LIMPIO --- */
+        header .logo-volcano {
+            max-height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        /* Eliminamos cualquier texto extra en el logo wrapper */
+        header .logo-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-plus {
+            position: relative;
+            background-color: var(--plus-dark);
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('images/bg-hero.jpg'); 
+            background-size: cover;
+            background-position: center;
+            height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+        /* Efecto de partícula sutil en el hero */
+        .hero-plus::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #fff, transparent);
+        }
+
+        .hero-plus h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .hero-plus h2 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--plus-orange);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        /* --- SECCIÓN ISO 14001 (Profundidad Técnica) --- */
+        .iso-section {
+            padding: 80px 20px;
+            background: #fff;
+        }
+        .iso-columns {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            align-items: center; /* Alineado al centro verticalmente */
+            margin-top: 40px;
+        }
+        .iso-details h4 {
+            color: var(--plus-dark);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--plus-orange);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .iso-list {
+            list-style: none;
+            padding: 0;
+        }
+        .iso-list li {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+        }
+        .iso-list i {
+            color: var(--plus-orange);
+            margin-top: 5px;
+        }
+
+        /* --- DECÁLOGO PREMIUM (Diseño Tarjetas) --- */
+        .decalogo-section {
+            padding: 80px 20px;
+            background-color: #f9f9f9;
+        }
+        .decalogo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .decalogo-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-bottom: 3px solid transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .decalogo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(230, 126, 34, 0.15); /* Sombra naranja suave */
+            border-bottom: 3px solid var(--plus-orange);
+        }
+        .card-number {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 5rem;
+            font-weight: 900;
+            color: rgba(0,0,0,0.03);
+            font-family: 'Montserrat', sans-serif;
+            z-index: 0;
+        }
+        .card-icon {
+            font-size: 2rem;
+            color: var(--plus-orange);
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+        .card-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--plus-dark);
+            z-index: 1;
+            position: relative;
+        }
+        .card-text {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* --- CUSTOMER JOURNEY (Timeline) --- */
+        .journey-section {
+            background: var(--plus-dark);
+            color: white;
+            padding: 80px 20px;
+        }
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .journey-step {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .journey-step h3 {
+            color: var(--plus-orange);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        .tag-pill {
+            display: inline-block;
+            background: rgba(230, 126, 34, 0.2);
+            color: var(--plus-orange);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        /* --- RESIDUOS (Detalle Técnico) --- */
+        .waste-section {
+            padding: 80px 20px;
+        }
+        .waste-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+        .waste-bin {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .bin-header {
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+        .bin-body {
+            padding: 25px;
+        }
+        .bin-body ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+        .bin-body li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .check-green { color: #27ae60; margin-right: 10px; }
+        .cross-red { color: #c0392b; margin-right: 10px; }
+
+        /* Colores contenedores */
+        .bg-yellow { background-color: #f1c40f; color: #333; }
+        .bg-blue { background-color: #3498db; }
+        .bg-green { background-color: #2ecc71; }
+        
+        .stat-box {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: #f0f3f4;
+            border-radius: 10px;
+            border-left: 5px solid var(--plus-orange);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-plus h1 { font-size: 2.2rem; }
+            .iso-columns, .journey-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo-wrapper">
+                <a href="index.html" style="text-decoration: none;">
+                    <img src="images/logo-volcano.png" alt="Volcano Teide" class="logo-volcano">
+                    <!-- TEXTO ELIMINADO CORRECTAMENTE -->
+                </a>
+            </div>
+
+            <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            
+            <nav id="navbar">
+                <a href="index.html">VOLVER A INICIO</a>
+                <a href="#iso" onclick="toggleMenu()">ISO 14001</a>
+                <a href="#decalogo" onclick="toggleMenu()">DECÁLOGO</a>
+                <a href="#journey" onclick="toggleMenu()">EXPERIENCIA</a>
+                <a href="#residuos" onclick="toggleMenu()">RESIDUOS</a>
+                <button class="btn btn-small btn-close-menu" onclick="toggleMenu()">
+                    <i class="fas fa-times"></i> CERRAR
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-plus">
+        <div class="hero-content container">
+            <h1>Volcano Plus</h1>
+            <h2>Excelencia . Sostenibilidad . Conciencia</h2>
+            <p style="max-width: 700px; margin: 0 auto; line-height: 1.6; font-size: 1.1rem; opacity: 0.9;">
+                Más allá de una visita. Un compromiso integral que abarca desde la certificación ambiental hasta la educación de cada visitante.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 1: ISO 14001 Y GESTIÓN AMBIENTAL -->
+    <section id="iso" class="iso-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <h2>Marco Legal y Compromiso</h2>
+                <p>Nuestra base: La norma ISO 14001:2015</p>
+            </div>
+            
+            <div class="iso-columns">
+                <div style="background: #fcfcfc; padding: 30px; border-radius: 10px; border: 1px solid #eee; text-align: center;">
+                    <h3 style="color: var(--plus-orange); margin-bottom: 20px;">Ciclo de Mejora Continua</h3>
+                    <p style="margin-bottom: 20px; font-size: 0.95rem;">Aplicamos la metodología <strong>PDCA</strong> (Planificar, Hacer, Verificar, Actuar) para asegurar que nuestro impacto en el Parque Nacional disminuya año tras año.</p>
+                    
+                    <!-- IMAGEN CORREGIDA AQUÍ -->
+                    <img src="images/pdca.jpg" alt="Ciclo PDCA" style="width: 100%; max-width: 300px; display: block; margin: 0 auto; border-radius: 8px;">
+                </div>
+                
+                <div class="iso-details">
+                    <p style="margin-bottom: 30px; font-size: 1.1rem;">
+                        No es solo una certificación, es nuestra forma de operar. Analizamos el <strong>Contexto de la Organización</strong> y evaluamos riesgos y oportunidades en un entorno de máxima protección.
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                        <div>
+                            <h4><i class="fas fa-tasks"></i> Planificación</h4>
+                            <p style="font-size: 0.9rem; color: #666;">Identificamos aspectos ambientales significativos: emisiones, vertidos y consumo de recursos antes de que ocurran.</p>
+                        </div>
+                        <div>
+                            <h4><i class="fas fa-users-cog"></i> Liderazgo y Apoyo</h4>
+                            <p style="font-size: 0.9rem; color: #666;">La alta dirección define la política ambiental, asegurando recursos y competencia del personal.</p>
+                        </div>
+                        <div>
+                            <h4><i class="fas fa-chart-line"></i> Evaluación</h4>
+                            <p style="font-size: 0.9rem; color: #666;">Auditorías internas y revisión por la dirección para garantizar el cumplimiento legal y la mejora.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: DECÁLOGO DEL GUÍA (REDISEÑO PREMIUM) -->
+    <section id="decalogo" class="decalogo-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+                <h2>Decálogo de Buenas Prácticas</h2>
+                <p>La excelencia en el servicio se une al respeto por el entorno.</p>
+            </div>
+
+            <div class="decalogo-grid">
+                <!-- 01 -->
+                <div class="decalogo-card">
+                    <span class="card-number">01</span>
+                    <i class="fas fa-book-reader card-icon"></i>
+                    <h3 class="card-title">Conocimiento Normativo</h3>
+                    <p class="card-text">Estudia el PRUG y la normativa. Informa con rigor sobre zonas de reserva y senderos permitidos.</p>
+                </div>
+
+                <!-- 02 -->
+                <div class="decalogo-card">
+                    <span class="card-number">02</span>
+                    <i class="fas fa-car-side card-icon"></i>
+                    <h3 class="card-title">Transporte Responsable</h3>
+                    <p class="card-text">Apaga el motor en paradas de más de 1 minuto. Usa marchas largas para reducir ruido y emisiones.</p>
+                </div>
+
+                <!-- 03 -->
+                <div class="decalogo-card">
+                    <span class="card-number">03</span>
+                    <i class="fas fa-star card-icon"></i>
+                    <h3 class="card-title">Cielos Oscuros</h3>
+                    <p class="card-text">Protege la calidad del cielo nocturno. Usa linternas de baja intensidad y apunta siempre al suelo.</p>
+                </div>
+
+                <!-- 04 -->
+                <div class="decalogo-card">
+                    <span class="card-number">04</span>
+                    <i class="fas fa-tint card-icon"></i>
+                    <h3 class="card-title">Recursos Limitados</h3>
+                    <p class="card-text">El agua y la energía en el Teide son escasas. Limita su uso a lo estrictamente indispensable.</p>
+                </div>
+
+                <!-- 05 -->
+                <div class="decalogo-card">
+                    <span class="card-number">05</span>
+                    <i class="fas fa-trash-alt card-icon"></i>
+                    <h3 class="card-title">Gestión de Residuos</h3>
+                    <p class="card-text">Promueve la filosofía "llévate tu basura". Si se genera, usa los contenedores de selectiva.</p>
+                </div>
+
+                <!-- 06 -->
+                <div class="decalogo-card">
+                    <span class="card-number">06</span>
+                    <i class="fas fa-paw card-icon"></i>
+                    <h3 class="card-title">Respeto Total</h3>
+                    <p class="card-text">Prohibido alimentar lagartos o llevarse piedras. Somos meros observadores de un ecosistema frágil.</p>
+                </div>
+
+                <!-- 07 -->
+                <div class="decalogo-card">
+                    <span class="card-number">07</span>
+                    <i class="fas fa-user-shield card-icon"></i>
+                    <h3 class="card-title">Seguridad Primero</h3>
+                    <p class="card-text">Anticípate a los cambios de clima. La seguridad del cliente es la base de una buena experiencia.</p>
+                </div>
+
+                <!-- 08 -->
+                <div class="decalogo-card">
+                    <span class="card-number">08</span>
+                    <i class="fas fa-utensils card-icon"></i>
+                    <h3 class="card-title">Identidad Local</h3>
+                    <p class="card-text">Promociona el producto Km 0 (papas, gofio, vinos). La gastronomía es parte del paisaje.</p>
+                </div>
+
+                <!-- 09 -->
+                <div class="decalogo-card">
+                    <span class="card-number">09</span>
+                    <i class="fas fa-people-carry card-icon"></i>
+                    <h3 class="card-title">Equipo Humano</h3>
+                    <p class="card-text">Cuida las instalaciones (baños, refugios) y colabora con compañeros. Eres parte de una cadena.</p>
+                </div>
+
+                 <!-- 10 -->
+                 <div class="decalogo-card">
+                    <span class="card-number">10</span>
+                    <i class="fas fa-medal card-icon"></i>
+                    <h3 class="card-title">Imagen de Excelencia</h3>
+                    <p class="card-text">Tu actitud, uniforme e idioma son la carta de presentación de Volcano Teide Experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: CUSTOMER JOURNEY (Viaje del Cliente) -->
+    <section id="journey" class="journey-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <h2 style="color:white;">Customer Journey Sostenible</h2>
+                <p style="color:#bbb;">Impactamos en cada etapa de la visita para generar conciencia.</p>
+            </div>
+            
+            <div class="journey-grid">
+                <!-- ANTES -->
+                <div class="journey-step">
+                    <h3><i class="fas fa-calendar-check"></i> Antes</h3>
+                    <p>Preparamos al visitante antes de su llegada con información clave.</p>
+                    <div style="margin-top: 15px;">
+                        <span class="tag-pill">volcanoteide.com</span>
+                        <span class="tag-pill">teide.guide</span>
+                        <span class="tag-pill">Blog Sostenible</span>
+                        <span class="tag-pill">Sistema de Reservas</span>
+                    </div>
+                </div>
+
+                <!-- DURANTE -->
+                <div class="journey-step" style="border-color: var(--plus-orange);">
+                    <h3><i class="fas fa-map-marked-alt"></i> Durante</h3>
+                    <p>Herramientas in situ para minimizar el impacto y maximizar la experiencia.</p>
+                    <div style="margin-top: 15px;">
+                        <span class="tag-pill">Manual Buen Teidelover</span>
+                        <span class="tag-pill">App Audioguía</span>
+                        <span class="tag-pill">Pantallas Informativas</span>
+                        <span class="tag-pill">Guías Certificados</span>
+                    </div>
+                </div>
+
+                <!-- DESPUÉS (Offline/Online) -->
+                <div class="journey-step">
+                    <h3><i class="fas fa-share-alt"></i> Online / Offline</h3>
+                    <p>Fidelización y extensión del mensaje de conservación.</p>
+                    <div style="margin-top: 15px;">
+                        <span class="tag-pill">#TeideLover</span>
+                        <span class="tag-pill">Redes Sociales</span>
+                        <span class="tag-pill">Encuestas</span>
+                        <span class="tag-pill">Campañas Influencers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: GESTIÓN DE RESIDUOS DETALLADA -->
+    <section id="residuos" class="waste-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+                <h2>Gestión de Residuos</h2>
+                <p>Separación correcta según la Ley 7/2022 y RD 1055/2022.</p>
+            </div>
+
+            <div class="waste-container">
+                <!-- AMARILLO -->
+                <div class="waste-bin">
+                    <div class="bin-header bg-yellow">Envases (Plástico/Latas)</div>
+                    <div class="bin-body">
+                        <ul>
+                            <li><i class="fas fa-check check-green"></i> Botellas de agua, refrescos</li>
+                            <li><i class="fas fa-check check-green"></i> Latas de conserva y bebidas</li>
+                            <li><i class="fas fa-check check-green"></i> Briks de leche/zumo</li>
+                            <li><i class="fas fa-check check-green"></i> Tapas y tapones</li>
+                            <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                            <li style="color: #c0392b; font-weight: 600;"><i class="fas fa-times cross-red"></i> NO TIRAR:</li>
+                            <li><i class="fas fa-times cross-red"></i> Juguetes de plástico</li>
+                            <li><i class="fas fa-times cross-red"></i> Biberones / Chupetes</li>
+                            <li><i class="fas fa-times cross-red"></i> Utensilios de cocina</li>
+                            <li><i class="fas fa-times cross-red"></i> Bolígrafos / Mecheros</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- AZUL -->
+                <div class="waste-bin">
+                    <div class="bin-header bg-blue">Papel y Cartón</div>
+                    <div class="bin-body">
+                        <ul>
+                            <li><i class="fas fa-check check-green"></i> Cajas de cartón (plegadas)</li>
+                            <li><i class="fas fa-check check-green"></i> Periódicos y revistas</li>
+                            <li><i class="fas fa-check check-green"></i> Folios y bolsas de papel</li>
+                            <li><i class="fas fa-check check-green"></i> Tubos de cartón</li>
+                            <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                            <li style="color: #c0392b; font-weight: 600;"><i class="fas fa-times cross-red"></i> NO TIRAR:</li>
+                            <li><i class="fas fa-times cross-red"></i> Briks (van al amarillo)</li>
+                            <li><i class="fas fa-times cross-red"></i> Servilletas sucias (orgánico)</li>
+                            <li><i class="fas fa-times cross-red"></i> Papel plastificado</li>
+                            <li><i class="fas fa-times cross-red"></i> Pañales</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- VERDE -->
+                <div class="waste-bin">
+                    <div class="bin-header bg-green">Vidrio</div>
+                    <div class="bin-body">
+                        <ul>
+                            <li><i class="fas fa-check check-green"></i> Botellas de vidrio (vino/cava)</li>
+                            <li><i class="fas fa-check check-green"></i> Tarros de mermelada/conservas</li>
+                            <li><i class="fas fa-check check-green"></i> Frascos de colonia</li>
+                            <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                            <li style="color: #c0392b; font-weight: 600;"><i class="fas fa-times cross-red"></i> NO TIRAR:</li>
+                            <li><i class="fas fa-times cross-red"></i> Vasos o copas de cristal</li>
+                            <li><i class="fas fa-times cross-red"></i> Espejos o cerámica</li>
+                            <li><i class="fas fa-times cross-red"></i> Bombillas / Fluorescentes</li>
+                            <li><i class="fas fa-times cross-red"></i> Tapas o corchos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-box">
+                <h3 style="margin-bottom: 10px; color: var(--plus-dark);">Datos que importan</h3>
+                <p style="font-size: 1.1rem;">
+                    En España se generan <strong>106 millones de toneladas</strong> de residuos. <br>
+                    De estos, <strong>3.3 millones son peligrosos</strong>. La correcta segregación es vital para alcanzar el objetivo europeo del 50% de reciclaje.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background: white; border-top: 5px solid var(--plus-orange);">
+        <div class="container" style="padding: 50px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+            <div class="footer-col">
+                <h4 style="color: var(--plus-dark); font-weight: 800; margin-bottom: 20px;">VOLCANO PLUS</h4>
+                <p style="color: #777; line-height: 1.6;">El sello de calidad y responsabilidad ambiental de Volcano Teide Experience. Uniendo turismo y conservación.</p>
+            </div>
+            <div class="footer-col">
+                <h4 style="color: var(--plus-dark); font-weight: 800; margin-bottom: 20px;">Enlaces Rápidos</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><a href="index.html" style="color: var(--plus-orange); text-decoration: none; font-weight: 600;">Volver a Guardianes del Teide</a></li>
+                    <li style="margin-bottom: 10px;"><a href="https://www.volcanoteide.com" target="_blank" style="color: #777; text-decoration: none;">Web Oficial</a></li>
+                    <li><a href="#" style="color: #777; text-decoration: none;">Política de Privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="background: var(--plus-dark); color: #aaa; text-align: center; padding: 20px; font-size: 0.85rem;">
+            &copy; 2024 Volcano Teide Experience. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+</html>
