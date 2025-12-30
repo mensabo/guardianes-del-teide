@@ -6,19 +6,53 @@
     <title>Guardianes del Teide | Compromiso y Acción</title>
     <!-- Fuentes y Iconos -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Vinculación a la Hoja de Estilos -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- MODAL ÚNICO -->
+    <!-- MODAL ÚNICO (PDFs, Avisos, Juegos) -->
     <div id="mainModal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div id="modalInjection" style="height: 100%;">
                 <iframe id="modalFrame" src="" width="100%" height="100%" style="border:none; border-radius: 8px;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ESPECÍFICO: LAS PALABRAS DEL GUARDIÁN -->
+    <div id="wordsModal" class="modal-overlay">
+        <div class="modal-content words-modal-box">
+            <span class="close-modal" onclick="closeWordsModal()">&times;</span>
+            <div class="words-form-container" id="wordsFormContent">
+                <h3>Tu mensaje a la montaña</h3>
+                <p>Tu sentir será revisado por nuestros guardianes para formar parte del muro de inspiración.</p>
+                
+                <form id="guardianWordsForm" onsubmit="handleWordsSubmit(event)">
+                    <div class="form-group">
+                        <input type="text" id="wName" placeholder="Tu nombre y procedencia" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="wType">
+                            <option value="experiencia">Contar mi experiencia</option>
+                            <option value="poesia">Escribir una poesía/reflexión</option>
+                            <option value="mensaje">Mensaje de conservación</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="wMessage" rows="5" placeholder="Escribe aquí tus palabras..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="wPhoto" class="photo-label">
+                            <i class="fas fa-camera"></i> Adjuntar una fotografía (opcional)
+                        </label>
+                        <input type="file" id="wPhoto" accept="image/*" style="display:none;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">ENVIAR A REVISIÓN</button>
+                </form>
             </div>
         </div>
     </div>
@@ -29,7 +63,6 @@
                 <div class="logo-volcano-zoom"><img src="images/logo-volcano.png" alt="Volcano Teide" class="logo-volcano"></div>
                 <div class="logo-text">GUARDIANES</div>
                 
-                <!-- CAMBIO REALIZADO: Enlace actualizado a volcano-plus.html -->
                 <a href="volcano-plus.html" class="volcano-plus-btn mobile-only-vplus">
                     <img src="images/volcano+.png" alt="Volcano Plus" class="volcano-plus-img-mobile">
                 </a>
@@ -40,15 +73,14 @@
             <nav id="navbar">
                 <a href="#inicio" onclick="toggleMenu()">INICIO</a>
                 <a href="#acciones" onclick="toggleMenu()">ACCIONES</a>
-                <a href="#agenda" onclick="toggleMenu()">AGENDA GUARDIANA</a>
+                <a href="#palabras" onclick="toggleMenu()">PALABRAS</a>
+                <a href="#agenda" onclick="toggleMenu()">AGENDA</a>
                 <a href="#personajes" onclick="toggleMenu()">GUARDIANES</a>
                 <a href="#noticias" onclick="toggleMenu()">NOTICIAS</a>
                 <a href="#concurso" onclick="toggleMenu()">CONCURSO</a>
                 
-                <!-- Oculto en menú móvil, visible en escritorio -->
                 <a href="#manifiesto" class="btn btn-primary btn-small desktop-only-btn" onclick="toggleMenu()">ÚNETE</a>
                 
-                <!-- CAMBIO REALIZADO: Enlace actualizado a volcano-plus.html -->
                 <a href="volcano-plus.html" class="volcano-plus-btn desktop-only-vplus">
                     <img src="images/volcano+.png" alt="Volcano Plus" class="volcano-plus-img" title="¡Descubre más!">
                 </a>
@@ -90,7 +122,6 @@
         </div>
     </div>
 
-    <!-- SECCIÓN VÍDEO PRESENTACIÓN -->
     <section class="presentation-video-section">
         <div class="video-presentation-wrapper">
             <video id="main-presentation-video" autoplay muted loop playsinline webkit-playsinline preload="auto" class="bg-presentation-video">
@@ -127,7 +158,7 @@
 
             <div class="card">
                 <div class="card-img video-card" style="background: #000;">
-                    <video autoplay muted loop playsinline webkit-playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
+                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute;">
                         <source src="videos/custodia-teide.mp4" type="video/mp4">
                         <source src="https://assets.mixkit.co/videos/preview/mixkit-clouds-and-blue-sky-over-a-mountain-range-32630-large.mp4" type="video/mp4">
                     </video>
@@ -148,6 +179,40 @@
                     <p>La biodiversidad nos da pistas. Una invitación a comprender el equilibrio natural del Teide.</p>
                     <a href="#" class="card-link">Descubrir datos</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: LAS PALABRAS DEL GUARDIÁN -->
+    <section id="palabras" class="words-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Las Palabras del Guardián</h2>
+                <p>Un espacio de intercambio para compartir el sentir y la experiencia en la cumbre.</p>
+            </div>
+
+            <div class="words-wall">
+                <div class="word-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="word-text">"El silencio en el cráter no es ausencia de sonido, es la voz de la tierra descansando. Una experiencia transformadora."</p>
+                    <span class="word-author">— Elena R., Madrid</span>
+                </div>
+                <div class="word-card poetic">
+                    <i class="fas fa-feather-alt"></i>
+                    <p class="word-text">Gigante de lava y sal,<br>bajo el cielo de cristal.<br>Tus piedras guardan la historia,<br>de un pueblo y su memoria.</p>
+                    <span class="word-author">— Juan M., Tenerife</span>
+                </div>
+                <div class="word-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="word-text">"Ver cómo los nuevos pinos crecen en las zonas quemadas me devuelve la esperanza. Gracias por esta labor."</p>
+                    <span class="word-author">— Marc V., Barcelona</span>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <button class="btn btn-orange" onclick="openWordsForm()">
+                    <i class="fas fa-pen-fancy"></i> DEJAR MI MENSAJE
+                </button>
             </div>
         </div>
     </section>
@@ -237,10 +302,11 @@
                     <div class="character-img-wrapper">
                         <div class="character-img" style="background-image: url('images/personaje-tassat.png'); background-size: cover; background-position: top center;"></div>
                     </div>
-                    <div class="character-info"><h3>Tassat</h3><p>Memoria viva del pueblo guanche. Armonía y respeto milenario por la montaña sagrada.</p></div>
+                    <div class="character-info"><h3>Tassat</h3><p>Memoria viva del pueblo guanche. Armonía y respeto milenario.</p></div>
                 </div>
+            </div>
             <div class="guardian-tribute">
-                <img src="images/legends.jpeg" alt="Guardianes" class="all-characters-img"><br>
+                <img src="images/legends.jpeg" alt="Guardianes" class="all-characters-img">
                 <div class="teidelovers-actions">
                     <button class="btn btn-primary" onclick="openPdfModal('manual-teidelovers.pdf')">
                         <i class="fas fa-book-open"></i> MANUAL TEIDELOVERS
@@ -347,7 +413,6 @@
         </div>
     </footer>
 
-    <!-- Vinculación al Archivo JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
