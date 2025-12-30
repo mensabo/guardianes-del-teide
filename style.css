@@ -871,4 +871,86 @@ header .nav-container {
     nav {
         gap: 10px;
     }
+}/* --- ESTILOS GENERALES DEL NAV (Base) --- */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+/* --- AJUSTES EXCLUSIVOS PARA ORDENADOR (Desktop) --- */
+@media (min-width: 769px) {
+    header .nav-container {
+        max-width: 1400px;
+        padding: 0 30px;
+        justify-content: space-between;
+    }
+
+    .logo-wrapper {
+        flex-shrink: 0;
+        margin-right: 20px;
+    }
+
+    .logo-text {
+        font-size: 1.1rem;
+        white-space: nowrap;
+    }
+
+    nav {
+        display: flex !important; /* Forzamos visibilidad en PC */
+        gap: 15px;
+        margin-left: auto; /* Empuja el menú a la derecha, dejando el logo a la izquierda */
+        position: relative;
+        background: transparent;
+        height: auto;
+        width: auto;
+    }
+
+    nav a:not(.volcano-plus-btn) {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .btn-close-menu {
+        display: none !important; /* Ocultar botón de cerrar en PC */
+    }
+}
+
+/* --- AJUSTES EXCLUSIVOS PARA MÓVIL --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        display: none; /* ESCONDIDO POR DEFECTO EN MÓVIL */
+        flex-direction: column;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(15, 15, 15, 0.98);
+        backdrop-filter: blur(15px);
+        z-index: 1999;
+    }
+
+    /* Solo se muestra cuando tiene la clase .active */
+    nav.active {
+        display: flex !important;
+    }
+
+    nav a:not(.volcano-plus-btn) {
+        font-size: 1.2rem;
+        margin: 10px 0;
+        opacity: 0; /* Se animan al abrir */
+    }
+
+    nav.active a {
+        animation: slideInUp 0.5s ease forwards;
+    }
+
+    .btn-close-menu {
+        display: inline-flex !important;
+    }
 }
