@@ -953,4 +953,37 @@ nav {
     .btn-close-menu {
         display: inline-flex !important;
     }
+}/* --- AJUSTES ESPECÍFICOS PARA MÓVIL (Sustituye o añade esto) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Reducimos el texto para ganar espacio */
+    .logo-text {
+        font-size: 0.85rem !important; /* Texto un poco más pequeño en móvil */
+        letter-spacing: 0px;
+        white-space: nowrap;
+    }
+
+    /* 2. Ajustamos el botón Volcano Plus */
+    .mobile-only-vplus {
+        display: flex !important;
+        align-items: center;
+        margin-left: 10px;    /* Espacio respecto al texto */
+        margin-right: 60px;   /* ¡IMPORTANTE! Este margen lo aleja del botón de menú */
+        flex-shrink: 0;
+        animation: heartbeat-glow 2s infinite ease-in-out;
+    }
+
+    /* 3. Aseguramos que el icono del menú tenga su espacio */
+    .menu-toggle {
+        display: block;
+        position: absolute;   /* Lo fijamos a la derecha */
+        right: 20px;
+        z-index: 2001;
+    }
+
+    /* Reducimos el tamaño de la imagen del botón en móviles muy pequeños */
+    .volcano-plus-img-mobile {
+        height: 60px; /* Bajamos de 75px a 60px para que no sea tan invasivo */
+        width: auto;
+    }
 }
